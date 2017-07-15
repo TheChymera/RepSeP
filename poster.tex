@@ -1,0 +1,155 @@
+\documentclass{beamer}
+\usepackage[orientation=portrait,size=custom,width=91,height=91]{beamerposter}
+\mode<presentation>{\usetheme{ZH_square}}
+% \usepackage{chemformula}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+% \usepackage[german, english]{babel} % required for rendering German special characters
+\usepackage{siunitx} %pretty measurement unit rendering
+\usepackage[autoprint=false, gobble=auto]{pythontex} % create figures on-line directly from python!
+\usepackage{hyperref} %enable hyperlink for urls
+\usepackage{ragged2e}
+\usepackage[font=scriptsize,justification=justified]{caption}
+
+% \sisetup{per=frac,fraction=sfrac}
+\sisetup{per-mode=symbol}
+
+\input{pythontex/functions.tex}
+\input{pythontex/pycode.tex}
+
+\usepackage{array,booktabs,tabularx}
+\newcolumntype{Z}{>{\centering\arraybackslash}X} % centered tabularx columns
+
+\title{LONGITUDINAL OPTO-PHARMACO-FMRI OF\\\vspace{.3em} SELECTIVE SEROTONIN REUPTAKE INHIBITION}
+% \title{Longitudinal opto-pharmaco-fMRI of Selective\\ Serotonin Reuptake Inhibition}
+\author{Horea-Ioan Ioanas$^{1}$, Bechara Saab$^{2}$, Markus Rudin$^{1}$}
+\institute[ETH]{$^{1}$Institute for Biomedical Engineering, ETH and University of Zurich \\ $^{2}$Preclinical Laboratory for Translational Research into Affective Disorders, DPPP, Psychiatric Hospital, University of Zurich}
+\date{\today}
+
+\newlength{\columnheight}
+\setlength{\columnheight}{0.881\textheight}
+
+\begin{document}
+\begin{frame}
+\begin{columns}
+	\begin{column}{.43\textwidth}
+		\begin{beamercolorbox}[center]{postercolumn}
+			\begin{minipage}{.98\textwidth}  % tweaks the width, makes a new \textwidth
+				\parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
+					\begin{myblock}{Background}
+						The ascending serotonergic system is of great clinical importance due to its implication in affective disorders and their treatment.
+						The origin of the majority of ascending serotonergic projections, the dorasl raphe (DR) represents a node with high degree centrality in the brain, and is evolutionarily well conserved.
+						As such it is interesting to both applied and basic research, and excellently suited for translational study.
+						\vspace{0.8em}
+
+						Selective Serotonin Reuptake Inhibitors (SSRIs) are the foremost drug class for treating depression, and also find significant use in treating anxiety, phobia, panic, and obsessive-compulsive disorder.
+						Given this prominent role of SSRIs, there have been substantial efforts in trying to understand their modulatory effects on the serotonergic system.
+						Current explanations, however, remain tentative, in part due to the lack of means to longitudinally study serotonergic neurotransmission at the whole-brain-level.
+					\end{myblock}\vfill
+					\vspace{-0.3em}
+					\begin{myblock}{Animals and Timetables}
+						DR serotonergic cells were targeted for optogenetic stimulation by injection of a Cre-conditional channelrhodopsin-expressing adeno-associated virus into C57BL/6 mice expressing Cre under the ePet promoter.
+						An optic fiber was chronically implanted to allow for longitudinal stimulation.
+						\vspace{0.4em}
+						Longitudinal designs implemented varying SSRI (fluoxetine) administration routes:
+						\begin{itemize}
+							\item Intravenous (i.v.) at \SI{10}{\mg\per\kg} daily (in cohorts from).
+							\item Intraperitoneal (i.p.) at \SI{10}{\mg\per\kg} daily (cohort timetable shown in).
+							\item Drinking water (d.w.) at \SI{\approx 20}{\milli\gram\per\kilo\gram} per day (one cohort timetable shown in figure).
+						\end{itemize}
+
+						\vspace{0.5em}
+						\py[3dplot]{figure}
+						\vspace{-1em}
+					\end{myblock}\vfill
+					\vspace{-0.3em}
+					\begin{myblock}{Behaviour}
+						Behavioural measurements can help stratify subjects and identify correlated fMRI activation patterns.
+						Forced swim test results from the optogenetic responder cohort (figure) spread over half the measurement range, and would thus be suitable to regress fMRI variance.
+						Results from all binned cohorts (figure) show a trend indicating that fluoxetine treatment may induce additional behaviour variance in healthy C57BL/6 mice undergoing longitudinal fMRI.
+						\vspace{0.4em}
+						\py[radar]{figure}
+						\vspace{-1em}
+					\end{myblock}\vfill
+					\vspace{-0.3em}
+					\begin{myblock}{Outlook}
+						\begin{itemize}
+							\item More constrained region of interest analysis.
+							\item Control group analysis to test for underlying (signal decay) trends.
+							\item Population stratification according to forced swim and open field test scores.
+							\item DR SNR improvement and true functional connectivity tracking.
+						\end{itemize}
+					\end{myblock}\vfill
+		}\end{minipage}\end{beamercolorbox}
+	\end{column}
+	\begin{column}{.57\textwidth}
+		\begin{beamercolorbox}[center]{postercolumn}
+			\begin{minipage}{.98\textwidth} % tweaks the width, makes a new \textwidth
+				\parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
+					\begin{myblock}{MRI Methods}
+						\vspace{0.5em}
+						\begin{center}
+							\begin{minipage}{.37\textwidth}
+							Data Acquisition:
+								\begin{itemize}
+									\item Bruker PharmaScan (\SI{7}{\tesla}, \SI{16}{\centi\metre} bore)
+									\item Implant-compatible in-house T/R coil
+									\item Gradient-echo EPI:
+										\begin{itemize}
+											\item TR=\SI{1000}{\ms}, TE=\SI{5}{\ms}, FA=\SI{60}{\degree}
+											\item x($\phi$)=\SI{312.5}{\um}, y($\nu$)=\SI{281.25}{\um}, z(slice)=\SI{500}{\um}
+										\end{itemize}
+									\item Endorem (Laboratoire Guebet SA)
+								\end{itemize}
+							\end{minipage}
+							\begin{minipage}{.26\textwidth}
+								Anesthesia Protocol:
+								\begin{itemize}
+									\item Free breathing, 1:4 O$_2$/air
+									\item Bolus:
+										\begin{itemize}
+											\item \SI{0.05}{\mg\per\kg} Medetomidine
+											\item \SI{1.5}{\percent} Isoflurane
+										\end{itemize}
+									\item Maintenance:
+										\begin{itemize}
+											\item \SI{0.1}{\mg\per\kg\per\hour} Medetomidine
+											\item \SI{0.5}{\percent} Isoflurane
+										\end{itemize}
+								\end{itemize}
+							\end{minipage}
+							\begin{minipage}{.32\textwidth}
+								Data Analysis:
+								\begin{itemize}
+									\item SAMRI (\href{https://github.com/IBT-FMI/SAMRI}{github.com/IBT-FMI/SAMRI}), internally using:
+										\begin{multicols}{3}
+											\begin{itemize}
+												\item AFNI
+												\item ANTs
+												\item Bru2Nii
+												\item FSL
+												\item Matplotlib
+												\item Nibabel
+												\item Nilearn
+												\item Nipy
+												\item Nipype
+												\item Pandas
+												\item Seaborn
+												\item Statsmodels
+											\end{itemize}
+										\end{multicols}
+								\end{itemize}
+							\end{minipage}
+						\end{center}
+					\end{myblock}\vfill
+					\begin{myblock}{opto-fMRI}
+						\vspace{0.3em}
+						\py[bsc_percentage]{figure}
+						\vspace{0.9em}
+			
+					\end{myblock}\vfill
+		}\end{minipage}\end{beamercolorbox}
+	\end{column}
+\end{columns}
+\end{frame}
+\end{document}
