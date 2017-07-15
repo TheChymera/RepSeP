@@ -4,19 +4,14 @@ almost_this_path = os.path.abspath(os.path.dirname(__file__))
 this_path_base, _ = os.path.split(almost_this_path)
 this_path = os.path.join(this_path_base,"pythontex")
 
-from pylab import *
+from pylab import gcf
 import matplotlib
 import matplotlib.pyplot as plt
-from matplotlib import rcParams
 
 pytex.add_dependencies(os.path.join(this_path,'matplotlibrc.conf'))
-sys.path.append(this_path)
 
-plt.style.use(u'seaborn-darkgrid')
 plt.style.use(u'ggplot')
 plt.style.use(os.path.join(this_path,'matplotlibrc.conf'))
-
-from scipy.stats import ttest_rel, ttest_ind, ttest_1samp
 
 # Set the prefix used for figure labels
 fig_label_prefix = 'fig'
