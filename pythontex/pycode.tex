@@ -1,0 +1,94 @@
+\begin{pycode}[3dplot]
+from mpl_toolkits.mplot3d import axes3d
+import matplotlib.pyplot as plt
+from matplotlib import cm
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+X, Y, Z = axes3d.get_test_data(0.05)
+ax.plot_surface(X, Y, Z, rstride=8, cstride=8, alpha=0.3)
+cset = ax.contourf(X, Y, Z, zdir='z', offset=-100, cmap=cm.coolwarm)
+cset = ax.contourf(X, Y, Z, zdir='x', offset=-40, cmap=cm.coolwarm)
+cset = ax.contourf(X, Y, Z, zdir='y', offset=40, cmap=cm.coolwarm)
+
+ax.set_xlabel('X')
+ax.set_xlim(-40, 40)
+ax.set_ylabel('Y')
+ax.set_ylim(-40, 40)
+ax.set_zlabel('Z')
+ax.set_zlim(-100, 100)
+
+figure = latex_figure(save_fig(fig_width=4.2,fig_height=2.1), caption="3D plot example")
+\end{pycode}
+\begin{pycode}[radar]
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+# Compute pie slices
+N = 20
+theta = np.linspace(0.0, 2 * np.pi, N, endpoint=False)
+radii = 10 * np.random.rand(N)
+width = np.pi / 4 * np.random.rand(N)
+
+ax = plt.subplot(111, projection='polar')
+bars = ax.bar(theta, radii, width=width, bottom=0.0)
+
+# Use custom colors and opacity
+for r, bar in zip(radii, bars):
+    bar.set_facecolor(plt.cm.viridis(r / 10.))
+    bar.set_alpha(0.5)
+
+figure = latex_figure(save_fig(fig_width=4.2,fig_height=2.1), caption="Radarplot example")
+\end{pycode}
+\begin{pycode}[bsc_percentage]
+import matplotlib.pyplot as plt
+from matplotlib.mlab import csv2rec
+from matplotlib.cbook import get_sample_data
+
+fname = get_sample_data('percent_bachelors_degrees_women_usa.csv')
+gender_degree_data = csv2rec(fname)
+
+color_sequence = ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c',
+                  '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5',
+                  '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f',
+                  '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+
+fig, ax = plt.subplots(1, 1)
+
+ax.set_xlim(1970, 2011)
+ax.set_ylim(-0.25, 90)
+
+plt.xticks(range(1970, 2011, 10))
+plt.yticks(range(0, 91, 10))
+
+major_codes = {
+    'Health Professions':'health_professions',
+    'Public Administration':'public_administration',
+    'Education':'education',
+    'Psychology':'psychology',
+    'Foreign Languages':'foreign_languages',
+    'English':'english',
+    'Comm. and Journalism':'communications_and_journalism',
+    'Art and Performance':'art_and_performance',
+    'Biology':'biology',
+    'Agriculture':'agriculture',
+    'Soc. Sciences and History':'social_sciences_and_history',
+    'Business':'business',
+    'Math and Statistics':'math_and_statistics',
+    'Architecture':'architecture',
+    'Physical Sciences':'physical_sciences',
+    'Computer Science':'computer_science',
+    'Engineering':'engineering',
+    }
+
+for rank, major in enumerate(major_codes):
+    line = plt.plot(gender_degree_data.year,
+                    gender_degree_data[major_codes[major]],
+                    color=color_sequence[rank])
+
+    y_pos = gender_degree_data[major_codes[major]][-1] - 0.5
+
+    plt.text(2011.5, y_pos, major, color=color_sequence[rank])
+figure = latex_figure(save_fig(fig_width=4.2,fig_height=3), caption="\\footnotesize Percentage of Bachelor\'s degrees conferred to women in the U.S.A. by major (1970-2011)",label="fst_new")
+\end{pycode}

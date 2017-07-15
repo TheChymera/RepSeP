@@ -1,0 +1,90 @@
+\documentclass[xcolor=table,aspectratio=43,dvipsnames]{beamer}
+% \documentclass[xcolor=table]{beamer}
+\usepackage{bm}
+\usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+% \usepackage{cmbright}
+% \usepackage[german, english]{babel} % required for rendering German special characters
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{multicol}
+\usepackage{siunitx} %pretty measurement unit rendering
+\usepackage{multirow} %required for auto-generated tables http://www.tablesgenerator.com/
+\usepackage[thinlines]{easytable}
+\usepackage{hyperref} %enable hyperlink for urls
+\usepackage{grffile} %determine file extension via LAST dot
+\usepackage{soul} %strikethrough via \st{}
+\usepackage[autoprint=false, gobble=auto]{pythontex} % create figures on-line directly from python!
+
+\input{pythontex/functions.tex}
+\input{pythontex/pycode.tex}
+
+\DeclareUnicodeCharacter{00A0}{ }
+\setbeamersize{text margin left=0.8em,text margin right=0.8em}
+
+\DeclareSIUnit\pixel{px}
+
+\usecolortheme[RGB={199,199,199}]{structure}
+\usetheme{Dresden}
+
+\newenvironment{figurehere}
+{\def\@captype{figure}}
+{}
+\makeatother
+
+\definecolor{dy}{RGB}{202,202,0}
+\definecolor{mg}{gray}{0.30}
+\definecolor{lg}{gray}{0.60}
+\definecolor{vlg}{gray}{0.78}
+
+\setbeamercolor{caption name}{fg=lg}
+\setbeamercolor{caption}{fg=lg}
+\setbeamercolor{author}{fg=lg}
+\setbeamercolor{institute}{fg=lg}
+\setbeamercolor{date}{fg=lg}
+\setbeamercolor{title}{fg=mg}
+\setbeamertemplate{caption}{\centering\insertcaption\par}
+\setbeamertemplate{navigation symbols}{}
+
+\input{pythontex/functions.tex}
+
+\title[LabbookDB --- A Relational Framework for Laboratory Metadata]{LabbookDB}
+\subtitle{A Relational Framework for Laboratory Metadata}
+\author{Horea-Ioan Ioanas}
+\institute{Institute for Biomedical Engineering, ETH and University of Zürich}
+\begin{document}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	\section{Plots}
+		\subsection{various demos}
+			\begin{frame}{}
+				\py[3dplot]{figure}
+			\end{frame}
+			\begin{frame}{}
+				\py[radar]{figure}
+			\end{frame}
+			\begin{frame}{}
+				\py[bsc_percentage]{figure}
+			\end{frame}
+	\section{Text Slides}
+		\subsection{because why not?}
+			\begin{frame}{Text Slide With Table}
+				\begin{itemize}
+					\item Tables are the best part of \LaTeX.
+				\end{itemize}
+				\begin{table}[]
+					\scriptsize
+					\centering
+					\begin{tabular}{@{}lllllllll@{}}
+						\toprule
+						ID & ... & O. Date & Op. & O.Op.Email & O.Pr. & O.Pr.Auth. & O.P.Auth.Email\\ \midrule
+						1 & ... & 2017-02-14 & Me & me@ethz.ch & old & Bob & bob@uni.eu & \\
+						2 & ... & 2017-02-29 & So. Else & s.e@uni.edu & old & Bob & bob@uni.eu & \\
+						3 & ... & 2017-02-14 & Me & me@ethz.ch & new1 & Me & me@ethz.ch & \\
+						4 & ... & 2017-02-14 & Bob & bob@uni.eu & old & Bob & bob@uni.eu & \\ \bottomrule
+					\end{tabular}
+					\caption{More realistic animal table. “O.” = Operation, “Op.” = Operator, “Pr.”=Protocol, “Auth.”=Author}
+				\end{table}
+			\end{frame}
+\end{document}

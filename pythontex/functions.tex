@@ -1,0 +1,112 @@
+\begin{pythontexcustomcode}[begin]{py}
+import os, sys
+almost_this_path = os.path.abspath(os.path.dirname(__file__))
+this_path_base, _ = os.path.split(almost_this_path)
+this_path = os.path.join(this_path_base,"pythontex")
+
+from pylab import *
+import matplotlib.pyplot as plt
+from matplotlib import rcParams
+
+pytex.add_dependencies(os.path.join(this_path,'matplotlibrc.py'))
+sys.path.append(this_path)
+
+import matplotlibrc
+matplotlibrc.main()
+plt.style.use(u'seaborn-darkgrid')
+plt.style.use(u'ggplot')
+
+from scipy.stats import ttest_rel, ttest_ind, ttest_1samp
+
+# Set the prefix used for figure labels
+fig_label_prefix = 'fig'
+# Track figure numbers to create unique auto-generated names
+fig_count = 0
+
+def figure_by_path(figure_path,textheight_frac=1,caption=None,label=None):
+    latex_code = "\\begin{figure}\n"
+    latex_code += "\\centering\\includegraphics[width={textheight_frac}\\textheight]{{{figure_path}}}\n".format(textheight_frac=textheight_frac,figure_path=figure_path)
+    latex_code += "\\vspace{-2.5em}\n"
+    latex_code += "\\caption{{{caption}}}\n".format(caption=caption)
+    latex_code += "\\label{{fig:{label}}}\n".format(label=label)
+    latex_code += "\\end{figure}\n"
+    return latex_code
+
+def save_fig(name='', legend=False, fig=None, ext='.pgf', fig_width=1, fig_height=1):
+    '''
+    Save the current figure (or `fig`) to file using `plt.save_fig()`.
+    If called with no arguments, automatically generate a unique filename.
+    Return the filename.
+    '''
+    # Get name (without extension) and extension
+    if not name:
+        global fig_count
+        # Need underscores or other delimiters between `input_*` variables
+        # to ensure uniqueness
+        name = 'auto_fig_{}-{}'.format(pytex.id, fig_count)
+        fig_count += 1
+    else:
+        if len(name) > 4 and name[:-4] in ['.pgf', '.svg', '.png', '.jpg']:
+            name, ext = name.rsplit('.', 1)
+
+    # Get current figure if figure isn't specified
+    if not fig:
+        fig = gcf()
+    fig.set_size_inches(fig_width,fig_height)
+    fig.savefig(name + ext)
+    fig.clf()
+    return name
+
+def latex_environment(name, content='', option=''):
+    '''
+    Simple helper function to write the `\begin...\end` LaTeX block.
+    '''
+    return '\\vspace{-0.25cm}\\begin{%s}%s\n%s\n\\end{%s}' % (name, option, content, name)
+
+def latex_figure(name=None, caption='', label='', width=1):
+    ''''
+    Auto wrap `name` in a LaTeX figure environment.
+    Width is a fraction of `\textwidth`.
+    '''
+    if not name:
+        name = save_fig()
+    content = '\\centering\n'
+    content += '\\makeatletter\\let\\input@path\\Ginput@path\\makeatother\n'
+    content += '\\input{%s.pgf}\n' % name
+    if not label:
+        label = name
+    if caption and not caption.rstrip().endswith('.'):
+        caption += '.'
+    if caption:
+        # `\label` needs to be in `\caption` to avoid issues in some cases
+        content += "\\caption{%s\\label{%s:%s}}\n" % (caption, fig_label_prefix, label)
+    return latex_environment('figure', content, '[htp]')
+
+pytex.bio_fignum = 0
+#global pytex # try without this line
+def bio_fig(gdd, fname=None, caption=None, label=None):
+#        global pytex # and this one, should work
+        if fname is None:
+            fname = 'pythontex-files-pres/biopython_fig_{0}-{1}.pdf'.format(pytex.id, pytex.bio_fignum)
+        gdd.write(fname, "PDF")
+        template = '''
+    \\begin{{figure}}
+    \\centering
+    \\includegraphics{{{fname}}}
+    \\caption{{ {label} {caption} }}
+    \\end{{figure}}
+    '''
+        if caption is None:
+            caption = ''
+        if label is None:
+            label = ''
+        else:
+            if not label.startswith('fig:'):
+                label = 'fig:' + label
+            label = '\\label{{{0}}}'.format(label)
+        template = template.format(fname=fname.rsplit('.', 1)[0], label=label, caption=caption)
+        print(template)
+        pytex.add_created(fname)
+        pytex.bio_fignum += 1
+        return template
+\end{pythontexcustomcode}
