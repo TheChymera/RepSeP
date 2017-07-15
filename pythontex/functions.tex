@@ -5,16 +5,16 @@ this_path_base, _ = os.path.split(almost_this_path)
 this_path = os.path.join(this_path_base,"pythontex")
 
 from pylab import *
+import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib import rcParams
 
-pytex.add_dependencies(os.path.join(this_path,'matplotlibrc.py'))
+pytex.add_dependencies(os.path.join(this_path,'matplotlibrc.conf'))
 sys.path.append(this_path)
 
-import matplotlibrc
-matplotlibrc.main()
 plt.style.use(u'seaborn-darkgrid')
 plt.style.use(u'ggplot')
+plt.style.use(os.path.join(this_path,'matplotlibrc.conf'))
 
 from scipy.stats import ttest_rel, ttest_ind, ttest_1samp
 
@@ -109,4 +109,6 @@ def bio_fig(gdd, fname=None, caption=None, label=None):
         pytex.add_created(fname)
         pytex.bio_fignum += 1
         return template
+\end{pythontexcustomcode}
+\begin{pythontexcustomcode}[end]{py}
 \end{pythontexcustomcode}

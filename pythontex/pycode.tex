@@ -82,13 +82,32 @@ major_codes = {
     'Engineering':'engineering',
     }
 
+y_offsets = {
+    'Foreign Languages': 0.7,
+    'English': -0.7,
+    'Comm. and Journalism': 0.8,
+    'Art and Performance': -0.6, 
+    'Agriculture': 2.2,
+    'Soc. Sciences and History': 0.4,
+    'Business': -1,
+    'Math and Statistics': 0.9,
+    'Architecture': -0.9,
+    'Computer Science': 0.8,
+    'Engineering': -1,
+    'Physical Sciences': -0.8,
+    'Biology': -0.7,
+    }
+    
 for rank, major in enumerate(major_codes):
     line = plt.plot(gender_degree_data.year,
                     gender_degree_data[major_codes[major]],
                     color=color_sequence[rank])
 
     y_pos = gender_degree_data[major_codes[major]][-1] - 0.5
+    
+    if major in y_offsets:
+        y_pos += y_offsets[major]
 
     plt.text(2011.5, y_pos, major, color=color_sequence[rank])
-figure = latex_figure(save_fig(fig_width=4.2,fig_height=3), caption="\\footnotesize Percentage of Bachelor\'s degrees conferred to women in the U.S.A. by major (1970-2011)",label="fst_new")
+figure = latex_figure(save_fig(fig_width=4.2,fig_height=3.2), caption="\\footnotesize Percentage of Bachelor\'s degrees conferred to women in the U.S.A. by major (1970-2011)",label="fst_new")
 \end{pycode}
