@@ -15,6 +15,10 @@
 \sisetup{per-mode=symbol}
 
 \input{pythontex/functions.tex}
+\begin{pythontexcustomcode}[begin]{py}
+pytex.add_dependencies(os.path.join(this_path,'poster.conf'))
+plt.style.use(os.path.join(this_path,'poster.conf'))
+\end{pythontexcustomcode}
 \input{pythontex/pycode.tex}
 
 \usepackage{array,booktabs,tabularx}

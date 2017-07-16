@@ -8,10 +8,6 @@ from pylab import gcf
 import matplotlib
 import matplotlib.pyplot as plt
 
-pytex.add_dependencies(os.path.join(this_path,'matplotlibrc.conf'))
-
-plt.style.use(os.path.join(this_path,'matplotlibrc.conf'))
-
 # Set the prefix used for figure labels
 fig_label_prefix = 'fig'
 # Track figure numbers to create unique auto-generated names
@@ -26,7 +22,7 @@ def figure_by_path(figure_path,textheight_frac=1,caption=None,label=None):
     latex_code += "\\end{figure}\n"
     return latex_code
 
-def save_fig(name='', legend=False, fig=None, ext='.pgf', fig_width=1, fig_height=1):
+def save_fig(name='', legend=False, fig=None, ext='.pgf'):
     '''
     Save the current figure (or `fig`) to file using `plt.save_fig()`.
     If called with no arguments, automatically generate a unique filename.
@@ -46,7 +42,6 @@ def save_fig(name='', legend=False, fig=None, ext='.pgf', fig_width=1, fig_heigh
     # Get current figure if figure isn't specified
     if not fig:
         fig = gcf()
-    fig.set_size_inches(fig_width,fig_height)
     fig.savefig(name + ext)
     fig.clf()
     return name

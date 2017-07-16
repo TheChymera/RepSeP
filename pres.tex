@@ -17,7 +17,12 @@
 \usepackage[autoprint=false, gobble=auto, keeptemps=all]{pythontex} % create figures on-line directly from python!
 
 \input{pythontex/functions.tex}
+\begin{pythontexcustomcode}[begin]{py}
+pytex.add_dependencies(os.path.join(this_path,'pres.conf'))
+plt.style.use(os.path.join(this_path,'pres.conf'))
+\end{pythontexcustomcode}
 \input{pythontex/pycode.tex}
+
 
 \DeclareUnicodeCharacter{00A0}{ }
 \setbeamersize{text margin left=0.8em,text margin right=0.8em}

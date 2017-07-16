@@ -165,8 +165,12 @@
 \usepackage[autoprint=false, gobble=auto]{pythontex} % create figures on-line directly from python!
 
 \input{pythontex/functions.tex}
+\begin{pythontexcustomcode}[begin]{py}
+pytex.add_dependencies(os.path.join(this_path,'draft.conf'))
+plt.style.use(os.path.join(this_path,'draft.conf'))
+\end{pythontexcustomcode}
+
 \input{pythontex/pycode.tex}
-\input{pythontex/functions.tex}
 
 \begin{document}
 %
