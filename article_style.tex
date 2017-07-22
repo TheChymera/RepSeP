@@ -54,15 +54,15 @@
 
 
 %TITLE
-\newcommand{\authorstyle}[1]{{\large\color{Black}#1}}
-\newcommand{\institution}[1]{{\footnotesize\color{Black}#1}}
+\newcommand{\authorstyle}[1]{{\large\usefont{T1}{phv}{b}{n}\color{Gray}#1}}
+\newcommand{\institution}[1]{{\footnotesize\usefont{T1}{phv}{m}{n}\color{Black}#1}}
 \usepackage{titling}
 \newcommand{\HorRule}{\color{Gray}\rule{\linewidth}{1pt}}
 \pretitle{
 	\vspace{-6em} %move title section up
 	\HorRule %horizontal rule abve title
 	\vspace{1.2em}
-	\huge\usefont{T1}{phv}{m}{n}
+	\huge\usefont{T1}{phv}{b}{n}
 	\color{Black} %title color
 }
 \posttitle{\par\vskip 0.5em}
