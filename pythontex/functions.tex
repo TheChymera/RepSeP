@@ -16,7 +16,7 @@ fig_count = 0
 def figure_by_path(figure_path,textheight_frac=1,caption=None,label=None):
     latex_code = "\\begin{figure}\n"
     latex_code += "\\centering\\includegraphics[width={textheight_frac}\\textheight]{{{figure_path}}}\n".format(textheight_frac=textheight_frac,figure_path=figure_path)
-    latex_code += "\\vspace{-2.5em}\n"
+    latex_code += "\\vspace{-.5em}\n"
     latex_code += "\\caption{{{caption}}}\n".format(caption=caption)
     latex_code += "\\label{{fig:{label}}}\n".format(label=label)
     latex_code += "\\end{figure}\n"
@@ -50,7 +50,7 @@ def latex_environment(name, content='', option=''):
     '''
     Simple helper function to write the `\begin...\end` LaTeX block.
     '''
-    return '\\vspace{-0.25cm}\\begin{%s}%s\n%s\n\\end{%s}' % (name, option, content, name)
+    return '\\begin{%s}%s\n%s\n\\end{%s}' % (name, option, content, name)
 
 def latex_figure(name=None, caption='', label='', width=1):
     ''''
