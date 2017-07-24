@@ -1,6 +1,6 @@
 # RepSeP
 
-The **Rep**roducible **Se**lf **P**ublishing toolkit demonstrates how to seamlessly (and also continuously or collaboratively) include publication-quality data analysis output in most common science communication formats.
+The **Rep**roducible **Se**lf **P**ublishing toolkit demonstrates how to seamlessly (and continuously or collaboratively) include publication-quality data analysis output in the most common science communication formats.
 
 Analysis does not have to be initiated manually, and output figures do not have to be copied, manually scaled, or otherwise manipulated.
 Data analysis is defined in one and only one place, and styling is applied at the document or output element level.
