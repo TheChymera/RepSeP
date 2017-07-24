@@ -14,6 +14,6 @@ Currently these are:
 ## How To Self-Publish Reproducible Scientific Documents
 
 * Clone this repository
-* Edit the document files (`pres.tex`, `poster.tex`, `draft.tex`) to contain your own research output
+* Edit the document files ([`pres.tex`](pres.tex), [`poster.tex`](poster.tex), [`article.tex`](article.tex)) to contain your own research output
 * Compile the documents
 * Distribute the output and links to your fork of this repository via your favourite channels
