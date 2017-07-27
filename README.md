@@ -12,11 +12,11 @@ Data *and* code dependencies are monitored for update via checksums, and are eit
 
 ## How To Self-Publish Reproducible Scientific Documents
 
-* Install the dependencies ([listed below](#dependencies))
-* Clone this repository
-* Edit the document files ([`pres.tex`](pres.tex), [`poster.tex`](poster.tex), [`article.tex`](article.tex)) to contain your own research output
-* Compile the documents
-* Distribute the output and links to your fork of this repository via your favourite channels
+* Install the dependencies ([listed below](#dependencies)).
+* Clone this repository.
+* Edit the document files ([`pres.tex`](pres.tex), [`poster.tex`](poster.tex), [`article.tex`](article.tex)) to contain your own research output.
+* Compile the documents.
+* Distribute the output and links to your fork of this repository via your favourite outreach channels.
 
 ## Dependencies
 
