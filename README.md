@@ -1,17 +1,14 @@
 # RepSeP
 
-The **Rep**roducible **Se**lf **P**ublishing toolkit demonstrates how to seamlessly (and continuously or collaboratively) include publication-quality data analysis output in the most common science communication formats.
-
-Analysis does not have to be initiated manually, and output figures do not have to be copied, manually scaled, or otherwise manipulated.
-Data analysis is defined in one and only one place, and styling is applied at the document or output element level.
-Data *and* code dependencies are provided or specified, so that both the toolkit in its present incarnation - as well as your own derivatives - can be reproduced locally and autonomosly by your colleagues, reviewers, students, and everybody else. 
-
-This toolkit demonstrates how to reuse your favourite data analysis workflow and include results seamlessly in all formats which your outreach style may require.
-Currently these are:
+The **Rep**roducible **Se**lf **P**ublishing toolkit demonstrates how to reuse your favourite data analysis workflows and seamlessly, continuously, and collaboratively include publication-quality output in the most common science communication formats:
 
 * Presentation Slides
 * Poster
 * Article
+
+Analysis does not have to be initiated manually, and output elements (e.g. figures or statistic results) do not have to be copied, manually scaled, or otherwise manipulated.
+Data analysis is defined in one and only one place, and configurable styling is applied programmatically at the document or output element level.
+Data *and* code dependencies are monitored for update via checksums, and are either provided or specified, so that both the toolkit in its present incarnation - as well as your own derivatives - can be reproduced locally and autonomously by your colleagues, reviewers, students, and everybody else. 
 
 ## How To Self-Publish Reproducible Scientific Documents
 
