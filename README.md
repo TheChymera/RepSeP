@@ -15,7 +15,7 @@ Currently these are:
 
 ## How To Self-Publish Reproducible Scientific Documents
 
-* Install the dependencies (listing linked below)
+* Install the dependencies ([listed below](#dependencies))
 * Clone this repository
 * Edit the document files ([`pres.tex`](pres.tex), [`poster.tex`](poster.tex), [`article.tex`](article.tex)) to contain your own research output
 * Compile the documents
@@ -25,5 +25,5 @@ Currently these are:
 
 Uniquely identifiable dependency lists for popular package managers:
 
-*[Portage](.portage.deps)
+* [Portage](.portage.deps)
 
