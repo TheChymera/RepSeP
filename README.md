@@ -20,10 +20,10 @@ Data *and* code dependencies are monitored for update via checksums, and are eit
 
 ## Dependencies
 
-We distribute [a full list of uniquely identifiable packages](.portage.deps) and their associated version constraints, in the format laid out by the [Package Management Specificaton](https://dev.gentoo.org/~ulm/pms/head/pms.html#x1-190003.1.2).
+We distribute [a full list of uniquely identifiable dependencies](.portage.deps) and their associated version constraints, in the format laid out by the [Package Management Specificaton](https://dev.gentoo.org/~ulm/pms/head/pms.html#x1-190003.1.2).
 Depending on your distribution (and/or package manager), you may find helpful isntructions on how to best install the dependencies below.
 
-### Gentoo (Portage)
+### Gentoo (Portage package manager)
 
 As root, run:
 
