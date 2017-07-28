@@ -12,15 +12,28 @@ Data *and* code dependencies are monitored for update via checksums, and are eit
 
 ## How To Self-Publish Reproducible Scientific Documents
 
+* Clone this repository: `git clone git@github.com:TheChymera/RepSeP.git`
 * Install the dependencies ([listed below](#dependencies)).
-* Clone this repository.
 * Edit the document files ([`pres.tex`](pres.tex), [`poster.tex`](poster.tex), [`article.tex`](article.tex)) to contain your own research output.
 * Compile the documents.
 * Distribute the output and links to your fork of this repository via your favourite outreach channels.
 
 ## Dependencies
 
-Uniquely identifiable dependency lists for popular package managers:
+We distribute [a full list of uniquely identifiable packages](.portage.deps) and their associated version constraints, in the format laid out by the [Package Management Specificaton](https://dev.gentoo.org/~ulm/pms/head/pms.html#x1-190003.1.2).
+Depending on your distribution (and/or package manager), you may find helpful isntructions on how to best install the dependencies below.
 
-* [Portage](.portage.deps)
+### Gentoo (Portage)
+
+As root, run:
+
+```
+emerge -1av $(<.portage.deps)
+```
+
+If you wish to permanently include the dependencies of this package to your dependency graph, you may forego the `-1` argument:
+
+```
+emerge -av $(<.portage.deps)
+```
 
