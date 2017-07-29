@@ -28,12 +28,7 @@ Depending on your distribution (and/or package manager), you may find helpful is
 As root, run:
 
 ```
-emerge -1av $(<.portage.deps)
-```
-
-If you wish to permanently include the dependencies of this package to your dependency graph, you may forego the `-1` argument:
-
-```
 emerge -av $(<.portage.deps)
 ```
+
 
