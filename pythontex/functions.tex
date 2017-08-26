@@ -15,19 +15,11 @@ fig_count = 0
 
 def pytex_fig(script, conf=None, caption='', label=''):
     if conf is None:
-        exec(open(os.path.join('pythontex', script)).read(), globals())
+        exec(open(script).read())
     else:
-        with plt.style.context([os.path.join('pythontex', conf)]):
-            exec(open(os.path.join('pythontex', script)).read(), globals())
+        with plt.style.context((conf)):
+            exec(open(script).read())
     fig = latex_figure(save_fig(), caption=caption, label=label)
-    return fig
-
-def make_fig(conf=None, caption='', label=''):
-    if conf is None:
-        fig = latex_figure(save_fig(), caption=caption, label=label)
-    else:
-        with plt.style.context([os.path.join('pythontex', conf)]):
-            fig = latex_figure(save_fig(), caption=caption, label=label)
     return fig
 
 def figure_by_path(figure_path,textheight_frac=1,caption=None,label=None):
@@ -60,7 +52,9 @@ def save_fig(name='', legend=False, fig=None, ext='.pgf'):
     if not fig:
         fig = gcf()
     fig.savefig(name + ext)
-    fig.clf()
+    plt.cla()
+    plt.clf()
+    plt.close()
     return name
 
 def latex_environment(name, content='', option=''):
