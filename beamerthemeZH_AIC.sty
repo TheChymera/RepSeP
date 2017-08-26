@@ -1,5 +1,5 @@
 % this style was created by Horea Christian and is basted on the ETH Zürich corporate design color palette https://www.ethz.ch/services/en/service/communication/corporate-design/colour.html
-\ProvidesPackage{beamerthemeZH_square}
+\ProvidesPackage{beamerthemeZH_AIC}
 
 \usepackage{graphicx}
 \newcommand{\vcenteredinclude}[1]{\begingroup
@@ -17,7 +17,6 @@
 \definecolor{ETH6}{RGB}{111,111,110}
 \definecolor{ETH8}{RGB}{0,122,146}
 \definecolor{ETH10}{RGB}{130,190,30}
-\definecolor{lg}{RGB}{170,170,170}
 \definecolor{tlg}{RGB}{230,230,230}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -39,7 +38,6 @@
 \setbeamercolor*{normal text}{fg=ETH6, bg=tlg}
 \setbeamercolor*{block body}{fg=black, bg=white}
 \setbeamercolor*{block title}{fg=black,bg=ETH10}
-% \setbeamercolor*{block title}{fg=white,bg=lg}
 \setbeamerfont{block title}{size=\large,series=\bf}
 \setbeamercolor{upper separation line head}{fg=red}
 
@@ -100,8 +98,14 @@
 			% \begin{column}{.0025\paperwidth}
 			% \end{column}
 			\begin{column}{.16\paperwidth}
+				\begin{center}
+					\includegraphics[width=.9\textwidth, height=.52\textwidth, keepaspectratio]{img/zh_logo}
+				\end{center}
 			\end{column}
 			\begin{column}{.1\paperwidth}
+				\begin{center}
+					\includegraphics[width=.95\textwidth, height=.9\textheight, keepaspectratio]{img/aic_chr}
+				\end{center}
 			\end{column}
 			\begin{column}{.0025\paperwidth}
 			\end{column}
@@ -124,7 +128,7 @@
 	\begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{author in head/foot}%
 		\href{http://www.aic-fmi.ethz.ch}{www.aic-fmi.ethz.ch}
 		\hfill
-		ISMRM - Psychiatric Neuroimaging - 2017-04-26
+		\today
 		\hfill
 		\href{mailto:my_address@wikibooks.org}{ioanas@biomed.ee.ethz.ch}
 		\vskip1ex
