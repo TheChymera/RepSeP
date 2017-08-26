@@ -85,28 +85,33 @@
 \setbeamertemplate{headline}{
 	\leavevmode
 	\begin{beamercolorbox}[wd=\paperwidth]{headline}
-		\vspace{2ex}\\
+		\vspace{3.ex}\\
 		\begin{columns}[c]
-			\begin{column}{.09\paperwidth}
+			\begin{column}{.06\paperwidth}
 			\end{column}
-			\begin{column}{.675\paperwidth}
+			\begin{column}{.75\paperwidth}
 				\raggedleft
-				\usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[1ex]}
-				\usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[1ex]}
-				\usebeamercolor{institute in headline}{\color{fg}\small{\insertinstitute}\\[1ex]}
+				\usebeamercolor{title in headline}{\color{fg}\textbf{\Huge{\inserttitle}}\\[1ex]}
+				\usebeamercolor{author in headline}{\color{fg}\Large{\insertauthor}\\[1ex]}
+				\usebeamercolor{institute in headline}{\color{fg}\normalsize{\insertinstitute}\\[1ex]}
 			\end{column}
-			\begin{column}{.25\paperwidth}
+			\begin{column}{.01\paperwidth}
 			\end{column}
-			\begin{column}{.03\paperwidth}
+			\begin{column}{.16\paperwidth}
+                                \begin{center}
+                                        \includegraphics[width=.9\textwidth, height=.52\textwidth, keepaspectratio]{img/zh_logo}
+                                \end{center}
+                        \end{column}
+			\begin{column}{.02\paperwidth}
 			\end{column}
 		\end{columns}
-		\vspace{2ex}\\
+		\vspace{3.ex}\\
 	\end{beamercolorbox}
 
  	\begin{beamercolorbox}[wd=\paperwidth]{lower separation line head}
 		\rule{0pt}{2pt}
 	\end{beamercolorbox}
-	\vskip-2cm
+	\vskip-17.ex
 	}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
