@@ -16,10 +16,14 @@
 
 \input{pythontex/functions.tex}
 \begin{pythontexcustomcode}[begin]{py}
-pytex.add_dependencies(os.path.join(this_path,'poster.conf'))
-plt.style.use(os.path.join(this_path,'poster.conf'))
+pytex.add_dependencies(os.path.join(this_path,'..','poster/main.conf'))
+pytex.add_dependencies(os.path.join(this_path,'..','poster/wide.conf'))
+pytex.add_dependencies(os.path.join(this_path,'..','poster/3dplot.conf'))
+plt.style.use(os.path.join(this_path,'..','poster/main.conf'))
 \end{pythontexcustomcode}
-\input{pythontex/pycode.tex}
+%\begin{pythontexcustomcode}[end]{py}
+%plt.style.use(os.path.join(this_path,'..','poster/main.conf'))
+%\end{pythontexcustomcode}
 
 \usepackage{array,booktabs,tabularx}
 \newcolumntype{Z}{>{\centering\arraybackslash}X} % centered tabularx columns
@@ -62,7 +66,7 @@ plt.style.use(os.path.join(this_path,'poster.conf'))
 						\end{itemize}
 
 						\vspace{0.5em}
-						\py{pytex_fig('3dplot.py', conf='3dplot.conf', label='3dplot', caption='A 3D plot')}
+						\py{pytex_fig('scripts/radar.py', label='radar', caption='A radar plot.')}
 						\vspace{-1em}
 					\end{myblock}\vfill
 					\vspace{-0.3em}
@@ -71,7 +75,7 @@ plt.style.use(os.path.join(this_path,'poster.conf'))
 						Forced swim test results from the optogenetic responder cohort (figure) spread over half the measurement range, and would thus be suitable to regress fMRI variance.
 						Results from all binned cohorts (figure) show a trend indicating that fluoxetine treatment may induce additional behaviour variance in healthy C57BL/6 mice undergoing longitudinal fMRI.
 						\vspace{0.4em}
-						\py[radar]{make_fig(label='radar', caption='A radar plot')}
+						\py{pytex_fig('scripts/3dplot.py', conf='poster/3dplot.conf', label='3dplot', caption='A 3D plot.')}
 						\vspace{-1em}
 					\end{myblock}\vfill
 					\vspace{-0.3em}
@@ -147,7 +151,7 @@ plt.style.use(os.path.join(this_path,'poster.conf'))
 					\end{myblock}\vfill
 					\begin{myblock}{opto-fMRI}
 						\vspace{0.3em}
-						\py[bsc_percentage]{make_fig(label='bsc_percentage', caption='Percentage of Bachelor’s degrees conferred to women in the U.S.A. by major (1970-2011)')}
+						\py{pytex_fig('scripts/bsc_percentage.py', conf='poster/wide.conf', label='bsc_percentage', caption='Percentage of Bachelor’s degrees conferred to women in the U.S.A. by major (1970-2011)')}
 						\vspace{0.9em}
 			
 					\end{myblock}\vfill
