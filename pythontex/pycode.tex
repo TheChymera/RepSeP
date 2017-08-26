@@ -17,8 +17,6 @@ ax.set_ylabel('Y')
 ax.set_ylim(-40, 40)
 ax.set_zlabel('Z')
 ax.set_zlim(-100, 100)
-
-figure = latex_figure(save_fig(), caption="3D plot example")
 \end{pycode}
 \begin{pycode}[radar]
 from os import path
@@ -43,8 +41,6 @@ bars = ax.bar(theta, radii, width=widths, bottom=0.0)
 for r, bar in zip(radii, bars):
     bar.set_facecolor(plt.cm.viridis(r / 10.))
     bar.set_alpha(0.5)
-
-figure = latex_figure(save_fig(), caption="Radarplot example", label="radar")
 \end{pycode}
 \begin{pycode}[bsc_percentage]
 import matplotlib.pyplot as plt
@@ -118,5 +114,4 @@ for rank, major in enumerate(major_codes):
         y_pos += y_offsets[major]
 
     plt.text(2011.5, y_pos, major, color=color_sequence[rank])
-figure = latex_figure(save_fig(), caption="\\footnotesize Percentage of Bachelor\'s degrees conferred to women in the U.S.A. by major (1970-2011)",label="fst_new")
 \end{pycode}

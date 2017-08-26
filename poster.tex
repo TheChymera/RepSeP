@@ -1,6 +1,6 @@
 \documentclass{beamer}
-\usepackage[orientation=portrait,size=custom,width=91,height=91]{beamerposter}
-\mode<presentation>{\usetheme{ZH_square}}
+\usepackage[orientation=portrait,size=a0]{beamerposter}
+\mode<presentation>{\usetheme{ZH}}
 % \usepackage{chemformula}
 \usepackage[utf8]{inputenc}
 \usepackage{multicol}
@@ -62,7 +62,7 @@ plt.style.use(os.path.join(this_path,'poster.conf'))
 						\end{itemize}
 
 						\vspace{0.5em}
-						\py[3dplot]{figure}
+						\py{pytex_fig('3dplot.py', conf='3dplot.conf', label='3dplot', caption='A 3D plot')}
 						\vspace{-1em}
 					\end{myblock}\vfill
 					\vspace{-0.3em}
@@ -71,7 +71,7 @@ plt.style.use(os.path.join(this_path,'poster.conf'))
 						Forced swim test results from the optogenetic responder cohort (figure) spread over half the measurement range, and would thus be suitable to regress fMRI variance.
 						Results from all binned cohorts (figure) show a trend indicating that fluoxetine treatment may induce additional behaviour variance in healthy C57BL/6 mice undergoing longitudinal fMRI.
 						\vspace{0.4em}
-						\py[radar]{figure}
+						\py[radar]{make_fig(label='radar', caption='A radar plot')}
 						\vspace{-1em}
 					\end{myblock}\vfill
 					\vspace{-0.3em}
@@ -147,7 +147,7 @@ plt.style.use(os.path.join(this_path,'poster.conf'))
 					\end{myblock}\vfill
 					\begin{myblock}{opto-fMRI}
 						\vspace{0.3em}
-						\py[bsc_percentage]{figure}
+						\py[bsc_percentage]{make_fig(label='bsc_percentage', caption='Percentage of Bachelor’s degrees conferred to women in the U.S.A. by major (1970-2011)')}
 						\vspace{0.9em}
 			
 					\end{myblock}\vfill

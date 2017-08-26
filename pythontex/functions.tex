@@ -13,6 +13,23 @@ fig_label_prefix = 'fig'
 # Track figure numbers to create unique auto-generated names
 fig_count = 0
 
+def pytex_fig(script, conf=None, caption='', label=''):
+    if conf is None:
+        exec(open(os.path.join('pythontex', script)).read(), globals())
+    else:
+        with plt.style.context([os.path.join('pythontex', conf)]):
+            exec(open(os.path.join('pythontex', script)).read(), globals())
+    fig = latex_figure(save_fig(), caption=caption, label=label)
+    return fig
+
+def make_fig(conf=None, caption='', label=''):
+    if conf is None:
+        fig = latex_figure(save_fig(), caption=caption, label=label)
+    else:
+        with plt.style.context([os.path.join('pythontex', conf)]):
+            fig = latex_figure(save_fig(), caption=caption, label=label)
+    return fig
+
 def figure_by_path(figure_path,textheight_frac=1,caption=None,label=None):
     latex_code = "\\begin{figure}\n"
     latex_code += "\\centering\\includegraphics[width={textheight_frac}\\textheight]{{{figure_path}}}\n".format(textheight_frac=textheight_frac,figure_path=figure_path)
