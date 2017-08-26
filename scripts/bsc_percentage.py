@@ -1,48 +1,3 @@
-\begin{pycode}[3dplot]
-from mpl_toolkits.mplot3d import axes3d
-import matplotlib.pyplot as plt
-from matplotlib import cm
-
-fig = plt.figure()
-ax = fig.gca(projection='3d')
-X, Y, Z = axes3d.get_test_data(0.05)
-ax.plot_surface(X, Y, Z, rstride=8, cstride=8, alpha=0.3)
-cset = ax.contourf(X, Y, Z, zdir='z', offset=-100, cmap=cm.coolwarm)
-cset = ax.contourf(X, Y, Z, zdir='x', offset=-40, cmap=cm.coolwarm)
-cset = ax.contourf(X, Y, Z, zdir='y', offset=40, cmap=cm.coolwarm)
-
-ax.set_xlabel('X')
-ax.set_xlim(-40, 40)
-ax.set_ylabel('Y')
-ax.set_ylim(-40, 40)
-ax.set_zlabel('Z')
-ax.set_zlim(-100, 100)
-\end{pycode}
-\begin{pycode}[radar]
-from os import path
-almost_this_path = path.abspath(path.dirname(__file__))
-this_path_base, _ = path.split(almost_this_path)
-data_path = path.join(this_path_base,"data")
-    
-import numpy as np
-import matplotlib.pyplot as plt
-
-
-# Compute pie slices
-N = 20
-theta = np.linspace(0.0, 2 * np.pi, N, endpoint=False)
-radii = np.loadtxt(path.join(data_path,"radii.csv"))
-widths = np.loadtxt(path.join(data_path,"widths.csv"))
-
-ax = plt.subplot(1,1,1, projection='polar')
-bars = ax.bar(theta, radii, width=widths, bottom=0.0)
-
-# Use custom colors and opacity
-for r, bar in zip(radii, bars):
-    bar.set_facecolor(plt.cm.viridis(r / 10.))
-    bar.set_alpha(0.5)
-\end{pycode}
-\begin{pycode}[bsc_percentage]
 import matplotlib.pyplot as plt
 from matplotlib.mlab import csv2rec
 from matplotlib.cbook import get_sample_data
@@ -87,7 +42,7 @@ y_offsets = {
     'Foreign Languages': 1,
     'English': -1,
     'Comm. and Journalism': 0.8,
-    'Art and Performance': -1.2, 
+    'Art and Performance': -1.2,
     'Agriculture': 2.2,
     'Soc. Sciences and History': 0.,
     'Business': -1.8,
@@ -102,16 +57,16 @@ y_offsets = {
     'Education': -0.6,
     'Psychology':-1,
     }
-    
+
 for rank, major in enumerate(major_codes):
     line = plt.plot(gender_degree_data.year,
                     gender_degree_data[major_codes[major]],
                     color=color_sequence[rank])
 
     y_pos = gender_degree_data[major_codes[major]][-1] - 0.5
-    
+
     if major in y_offsets:
         y_pos += y_offsets[major]
 
     plt.text(2011.5, y_pos, major, color=color_sequence[rank])
-\end{pycode}
+
