@@ -18,11 +18,10 @@
 
 \input{pythontex/functions.tex}
 \begin{pythontexcustomcode}[begin]{py}
-pytex.add_dependencies(os.path.join(this_path,'pres.conf'))
-plt.style.use(os.path.join(this_path,'pres.conf'))
+DOC_STYLE = 'pres/main.conf' 
+pytex.add_dependencies(DOC_STYLE, 'pres/3dplot.conf')
 \end{pythontexcustomcode}
-\input{pythontex/pycode.tex}
-
+ 
 
 \DeclareUnicodeCharacter{00A0}{ }
 \setbeamersize{text margin left=0.8em,text margin right=0.8em}
@@ -62,13 +61,13 @@ plt.style.use(os.path.join(this_path,'pres.conf'))
 	\section{Plots}
 		\subsection{Various figure examples}
 			\begin{frame}{}
-				\py[3dplot]{figure}
+				\py{pytex_fig('scripts/radar.py', label='radar', caption='A radar plot.')}
 			\end{frame}
 			\begin{frame}{}
-				\py[radar]{figure}
+				\py{pytex_fig('scripts/3dplot.py', conf='pres/3dplot.conf', label='3dplot', caption='A 3D plot.')}
 			\end{frame}
 			\begin{frame}{}
-				\py[bsc_percentage]{figure}
+				\py{pytex_fig('scripts/bsc_percentage.py', conf='pres/tall.conf', label='bsc_percentage', caption='Percentage of Bachelor’s degrees conferred to women in the U.S.A. by major (1970-2011).')}
 			\end{frame}
 	\section{Text Slides}
 		\subsection{because why not?}
