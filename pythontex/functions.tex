@@ -4,21 +4,36 @@ almost_this_path = os.path.abspath(os.path.dirname(__file__))
 this_path_base, _ = os.path.split(almost_this_path)
 this_path = os.path.join(this_path_base,"pythontex")
 
-from pylab import gcf
 import matplotlib
 import matplotlib.pyplot as plt
+from pylab import gcf
 
 # Set the prefix used for figure labels
 fig_label_prefix = 'fig'
 # Track figure numbers to create unique auto-generated names
 fig_count = 0
 
-def pytex_fig(script, conf=None, caption='', label=''):
-    if conf is None:
+def pytex_fig(script, conf=[], caption='', label=''):
+    '''
+    Executes a python script while applying the custom style.
+
+    Notes
+    -----
+    We go about this in a somewhat roundabout fashion - always applying `DOC_STYLE`, and then additionally applying a context style which may be only `[DOC_STYLE]` in case no other config file is specified.
+    This is because scripts need to be executed in a while statement lest rcParams become persistent between figures.
+    Conversely, the text engine part of the configuration needs to be applied outside of the context statement, because it will not work inside it.
+    '''
+    pytex.add_dependencies(script)
+    try:
+        document_style = DOC_STYLE
+    except NameError:
+        document_style = 'pythontex/minimal.conf'
+    plt.style.use(document_style)
+    if isinstance(conf, str):
+        conf = [conf]
+    figure_style = [document_style]+conf
+    with plt.style.context(figure_style):
         exec(open(script).read())
-    else:
-        with plt.style.context((conf)):
-            exec(open(script).read())
     fig = latex_figure(save_fig(), caption=caption, label=label)
     return fig
 
@@ -52,9 +67,11 @@ def save_fig(name='', legend=False, fig=None, ext='.pgf'):
     if not fig:
         fig = gcf()
     fig.savefig(name + ext)
+    fig.clear()
     plt.cla()
     plt.clf()
     plt.close()
+    plt.close('all')
     return name
 
 def latex_environment(name, content='', option=''):
