@@ -16,10 +16,8 @@
 
 \input{pythontex/functions.tex}
 \begin{pythontexcustomcode}[begin]{py}
-pytex.add_dependencies(os.path.join(this_path,'..','poster/main.conf'))
-pytex.add_dependencies(os.path.join(this_path,'..','poster/wide.conf'))
-pytex.add_dependencies(os.path.join(this_path,'..','poster/3dplot.conf'))
-plt.style.use(os.path.join(this_path,'..','poster/main.conf'))
+DOC_STYLE = 'poster/main.conf'
+pytex.add_dependencies(DOC_STYLE, 'poster/wide.conf', 'poster/3dplot.conf')
 \end{pythontexcustomcode}
 
 \usepackage{array,booktabs,tabularx}
