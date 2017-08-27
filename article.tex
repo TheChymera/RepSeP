@@ -41,15 +41,15 @@ At nam quis assum veniam.
 
 	Matplotlib's 3D plots are associated with a number of intricacies (such as axes.facecolor specifying the background of the 2D output figure and not the 3D grid --- which is why they are particularly interesting. 
 	
-	\py[3dplot]{figure}
+	\py{pytex_fig('scripts/3dplot.py', conf='article/3dplot.conf', label='3dplot', caption='A 3D plot.')}
 
 \section{Other Plots}
 	Here we demonstrate more generic plotting capabilities.
 
 	Radarplots --- as seen in figure~\ref{fig:radar} --- display and fit well into the article-style output. 
-	\py[radar]{figure}
+	\py{pytex_fig('scripts/radar.py', label='radar', caption='A radar plot.')}	
 	
-	\py[bsc_percentage]{figure}
+	\py{pytex_fig('scripts/bsc_percentage.py', conf='article/bsc_percentage.conf', label='bsc_percentage', caption='Percentage of Bachelor’s degrees conferred to women in the U.S.A. by major (1970-2011).', multicol=True)}
 
 \section{Section}
 

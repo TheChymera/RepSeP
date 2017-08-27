@@ -92,10 +92,9 @@
 
 \input{pythontex/functions.tex}
 \begin{pythontexcustomcode}[begin]{py}
-	pytex.add_dependencies(os.path.join(this_path,'article.conf'))
-	plt.style.use(os.path.join(this_path,'article.conf'))
+DOC_STYLE = 'article/main.conf'
+pytex.add_dependencies(DOC_STYLE, 'article/3dplot.conf', 'article/bsc_percentage.conf')
 \end{pythontexcustomcode}
-\input{pythontex/pycode.tex}
 
 
 
