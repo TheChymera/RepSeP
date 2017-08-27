@@ -13,7 +13,7 @@ fig_label_prefix = 'fig'
 # Track figure numbers to create unique auto-generated names
 fig_count = 0
 
-def pytex_fig(script, conf=[], caption='', label=''):
+def pytex_fig(script, conf=[], caption='', label='', multicol=False):
     '''
     Executes a python script while applying the custom style.
 
@@ -34,7 +34,10 @@ def pytex_fig(script, conf=[], caption='', label=''):
     figure_style = [document_style]+conf
     with plt.style.context(figure_style):
         exec(open(script).read())
-    fig = latex_figure(save_fig(), caption=caption, label=label)
+    if multicol:
+        fig = latex_figure(save_fig(), "figure*", caption=caption, label=label)
+    else:
+        fig = latex_figure(save_fig(), "figure", caption=caption, label=label)
     return fig
 
 def figure_by_path(figure_path,textheight_frac=1,caption=None,label=None):
@@ -80,7 +83,7 @@ def latex_environment(name, content='', option=''):
     '''
     return '\\begin{%s}%s\n%s\n\\end{%s}' % (name, option, content, name)
 
-def latex_figure(name=None, caption='', label='', width=1):
+def latex_figure(name, figure, caption='', label='', width=1):
     ''''
     Auto wrap `name` in a LaTeX figure environment.
     Width is a fraction of `\textwidth`.
@@ -97,7 +100,7 @@ def latex_figure(name=None, caption='', label='', width=1):
     if caption:
         # `\label` needs to be in `\caption` to avoid issues in some cases
         content += "\\caption{%s\\label{%s:%s}}\n" % (caption, fig_label_prefix, label)
-    return latex_environment('figure', content, '[htp]')
+    return latex_environment(figure, content, '[htp]')
 
 pytex.bio_fignum = 0
 #global pytex # try without this line
