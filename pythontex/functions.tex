@@ -29,7 +29,7 @@ def pytex_fig(script, conf=[], caption='', label='', multicol=False):
     except NameError:
         document_style = 'pythontex/minimal.conf'
     plt.style.use(document_style)
-    if isinstance(conf, str):
+    if isinstance(conf, basestring):
         conf = [conf]
     figure_style = [document_style]+conf
     with plt.style.context(figure_style):
