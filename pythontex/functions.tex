@@ -13,6 +13,26 @@ fig_label_prefix = 'fig'
 # Track figure numbers to create unique auto-generated names
 fig_count = 0
 
+def pytex_tab(script, caption='', label='', options=''):
+    import sys
+    import StringIO
+    import contextlib
+
+    @contextlib.contextmanager
+    def stdoutIO(stdout=None):
+        old = sys.stdout
+        if stdout is None:
+            stdout = StringIO.StringIO()
+        sys.stdout = stdout
+        yield stdout
+        sys.stdout = old
+
+    with stdoutIO() as s:
+        exec(open(script).read(), locals())
+
+    tab = latex_table(s.getvalue(), caption=caption, label=label, options=options)
+    return tab
+
 def pytex_fig(script, conf=[], caption='', label='', multicol=False):
     '''
     Executes a python script while applying the custom style.
@@ -82,6 +102,11 @@ def latex_environment(name, content='', option=''):
     Simple helper function to write the `\begin...\end` LaTeX block.
     '''
     return '\\begin{%s}%s\n%s\n\\end{%s}' % (name, option, content, name)
+
+def latex_table(table, caption='', label='', options=''):
+    content = table
+    content += "\\caption{%s\\label{%s:%s}}\n" % (caption, "tab", label)
+    return latex_environment("table", content=content, option=options)
 
 def latex_figure(name, figure, caption='', label='', width=1):
     ''''
