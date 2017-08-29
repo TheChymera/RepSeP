@@ -15,14 +15,17 @@ fig_count = 0
 
 def pytex_tab(script, caption='', label='', options=''):
     import sys
-    import StringIO
+    try:
+        from StringIO import StringIO
+    except ImportError:
+        from io import StringIO
     import contextlib
 
     @contextlib.contextmanager
     def stdoutIO(stdout=None):
         old = sys.stdout
         if stdout is None:
-            stdout = StringIO.StringIO()
+            stdout = StringIO()
         sys.stdout = stdout
         yield stdout
         sys.stdout = old
@@ -49,10 +52,15 @@ def pytex_fig(script, conf=[], caption='', label='', multicol=False):
     except NameError:
         document_style = 'pythontex/minimal.conf'
     plt.style.use(document_style)
-    if isinstance(conf, basestring):
-        conf = [conf]
-    figure_style = [document_style]+conf
-    with plt.style.context(figure_style):
+    try:
+        if isinstance(conf, basestring):
+            conf = [conf]
+    except NameError:
+        if isinstance(conf, str):
+            conf = [conf]
+    figure_styles = [document_style]+conf
+    pytex.add_dependencies(*figure_styles)
+    with plt.style.context(figure_styles):
         exec(open(script).read())
     if multicol:
         fig = latex_figure(save_fig(), "figure*", caption=caption, label=label)
