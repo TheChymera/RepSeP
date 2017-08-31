@@ -13,13 +13,15 @@ fig_label_prefix = 'fig'
 # Track figure numbers to create unique auto-generated names
 fig_count = 0
 
-def pytex_tab(script, caption='', label='', options=''):
+def pytex_tab(script, caption='', label='', options='', data=''):
     import sys
     try:
         from StringIO import StringIO
     except ImportError:
         from io import StringIO
     import contextlib
+
+    pytex.add_dependencies(data)
 
     @contextlib.contextmanager
     def stdoutIO(stdout=None):
