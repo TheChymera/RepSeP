@@ -21,7 +21,8 @@ def pytex_tab(script, caption='', label='', options='', data=''):
         from io import StringIO
     import contextlib
 
-    pytex.add_dependencies(data)
+    if data:
+        pytex.add_dependencies(data)
 
     @contextlib.contextmanager
     def stdoutIO(stdout=None):
