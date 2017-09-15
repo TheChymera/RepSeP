@@ -13,8 +13,8 @@ As no binaries are tracked, publications built analogously to our examples are e
 
 ### Video Presentations
 
-* Lightning Talk, at [EuroSciPy 2017](https://www.youtube.com/watch?v=bu9_338Q7rU)
-* Lightning Talk, at [SciPy 2017](https://www.youtube.com/watch?v=8AD4mtXJhpE)
+* [Reproducible Self-Publication via PythonTeX](https://www.youtube.com/watch?v=bu9_338Q7rU), at EuroSciPy 2017 in Erlangen (DE)   
+* [Reproducible Self-Publishing](https://www.youtube.com/watch?v=8AD4mtXJhpE), at SciPy 2017 in Austin (TX,USA)
 
 ## How To Self-Publish Reproducible Scientific Documents
 
@@ -41,4 +41,5 @@ emerge -av $(<.portage.deps)
 
 ### Posters
 
-* [BehavioPy, at EuroSciPy 2017](https://bitbucket.org/TheChymera/behaviopy_repsep/)
+* [BehavioPy Poster](https://bitbucket.org/TheChymera/behaviopy_repsep/), versions presented at:
+	* [EuroSciPy 2017](https://bitbucket.org/TheChymera/behaviopy_repsep/raw/7d626813659efa1345efbf07faafaa9a6bcf3876/poster.pdf) in Erlangen (DE)
