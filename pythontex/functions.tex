@@ -1,10 +1,6 @@
 \begin{pythontexcustomcode}[begin]{py}
 import os, sys
-almost_this_path = os.path.abspath(os.path.dirname(__file__))
-this_path_base, _ = os.path.split(almost_this_path)
-this_path = os.path.join(this_path_base,"pythontex")
 
-import matplotlib
 import matplotlib.pyplot as plt
 from pylab import gcf
 
@@ -13,13 +9,16 @@ fig_label_prefix = 'fig'
 # Track figure numbers to create unique auto-generated names
 fig_count = 0
 
-def pytex_tab(script, caption='', label='', options=''):
+def pytex_tab(script, caption='', label='', options='', data=''):
     import sys
     try:
         from StringIO import StringIO
     except ImportError:
         from io import StringIO
     import contextlib
+
+    if data:
+        pytex.add_dependencies(data)
 
     @contextlib.contextmanager
     def stdoutIO(stdout=None):
@@ -38,7 +37,7 @@ def pytex_tab(script, caption='', label='', options=''):
 
 def pytex_fig(script, conf=[], caption='', label='', multicol=False):
     '''
-    Executes a python script while applying the custom style.
+    Executes a Python script while applying the custom style.
 
     Notes
     -----
@@ -51,6 +50,8 @@ def pytex_fig(script, conf=[], caption='', label='', multicol=False):
         document_style = DOC_STYLE
     except NameError:
         document_style = 'pythontex/minimal.conf'
+    #for some reason this needs to be applied here, in addition to the context application
+    #below (where it can be omitted, but is needed to make sure the `figre_styles` variable is populated).
     plt.style.use(document_style)
     try:
         if isinstance(conf, basestring):

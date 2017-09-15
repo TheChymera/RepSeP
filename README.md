@@ -1,14 +1,15 @@
 # RepSeP
 
-The **Rep**roducible **Se**lf **P**ublishing toolkit demonstrates how to reuse your favourite data analysis workflows and seamlessly, continuously, and collaboratively include publication-quality output in the most common science communication formats:
+The **Rep**roducible **Se**lf **P**ublishing toolkit demonstrates how to reuse your favourite data analysis workflows in order to seamlessly include quasi-dynamic publication-quality output (e.g. figures, tables, or statistic reports) in the most common science communication formats. Currently we provide examples for:
 
 * Presentation Slides
-* Poster
-* Article
+* A Poster
+* An Article
 
-Analysis does not have to be initiated manually, and output elements (e.g. figures or statistic results) do not have to be copied, manually scaled, or otherwise manipulated.
-Data analysis is defined in one and only one place, and configurable styling is applied programmatically at the document or output element level.
+In these examples, analysis does not have to be initiated manually, and output elements do not have to be copied, manually scaled, styled, or otherwise manipulated.
+Data analysis is kept in one and only one place, and configurable styling is applied programmatically at the document or output element level.
 Data *and* code dependencies are monitored for update via checksums, and are either provided or specified, so that both the toolkit in its present incarnation - as well as your own derivatives - can be reproduced locally and autonomously by your colleagues, reviewers, students, and everybody else. 
+As no binaries are tracked, publications built analogously to our examples are excellently suited for collaborative editing and version tracking, e.g. via Git. 
 
 ## Video Presentations
 
@@ -20,7 +21,7 @@ Data *and* code dependencies are monitored for update via checksums, and are eit
 * Clone this repository: `git clone git@github.com:TheChymera/RepSeP.git`
 * Install the dependencies ([listed below](#dependencies)).
 * Edit the document files ([`pres.tex`](pres.tex), [`poster.tex`](poster.tex), [`article.tex`](article.tex)) to contain your own research output.
-* Compile the documents.
+* Compile the documents, e.g.: `pdflatex pres.tex && pythontex.py pres.tex && pdflatex pres.tex`
 * Distribute the output and links to your fork of this repository via your favourite outreach channels.
 
 ## Dependencies
