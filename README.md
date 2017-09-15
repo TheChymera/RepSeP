@@ -11,7 +11,7 @@ Data analysis is kept in one and only one place, and configurable styling is app
 Data *and* code dependencies are monitored for update via checksums, and are either provided or specified, so that both the toolkit in its present incarnation - as well as your own derivatives - can be reproduced locally and autonomously by your colleagues, reviewers, students, and everybody else. 
 As no binaries are tracked, publications built analogously to our examples are excellently suited for collaborative editing and version tracking, e.g. via Git. 
 
-## Video Presentations
+### Video Presentations
 
 * Lightning Talk, at [EuroSciPy 2017](https://www.youtube.com/watch?v=bu9_338Q7rU)
 * Lightning Talk, at [SciPy 2017](https://www.youtube.com/watch?v=8AD4mtXJhpE)
