@@ -10,6 +10,11 @@ Analysis does not have to be initiated manually, and output elements (e.g. figur
 Data analysis is defined in one and only one place, and configurable styling is applied programmatically at the document or output element level.
 Data *and* code dependencies are monitored for update via checksums, and are either provided or specified, so that both the toolkit in its present incarnation - as well as your own derivatives - can be reproduced locally and autonomously by your colleagues, reviewers, students, and everybody else. 
 
+## Video Presentations
+
+* Lightning Talk, at [EuroSciPy 2017](https://www.youtube.com/watch?v=bu9_338Q7rU)
+* Lightning Talk, at [SciPy 2017](https://www.youtube.com/watch?v=8AD4mtXJhpE)
+
 ## How To Self-Publish Reproducible Scientific Documents
 
 * Clone this repository: `git clone git@github.com:TheChymera/RepSeP.git`
@@ -31,4 +36,8 @@ As root, run:
 emerge -av $(<.portage.deps)
 ```
 
+## Examples
 
+### Posters
+
+* [BehavioPy, at EuroSciPy 2017](https://bitbucket.org/TheChymera/behaviopy_repsep/)
