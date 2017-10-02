@@ -9,6 +9,31 @@ fig_label_prefix = 'fig'
 # Track figure numbers to create unique auto-generated names
 fig_count = 0
 
+def pytex_printonly(script, data=''):
+    import sys
+    try:
+        from StringIO import StringIO
+    except ImportError:
+        from io import StringIO
+    import contextlib
+
+    if data:
+        pytex.add_dependencies(data)
+
+    @contextlib.contextmanager
+    def stdoutIO(stdout=None):
+        old = sys.stdout
+        if stdout is None:
+            stdout = StringIO()
+        sys.stdout = stdout
+        yield stdout
+        sys.stdout = old
+
+    with stdoutIO() as s:
+        exec(open(script).read(), locals())
+
+    return s.getvalue()
+
 def pytex_tab(script, caption='', label='', options='', data=''):
     import sys
     try:
