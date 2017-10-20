@@ -18,5 +18,6 @@ bars = ax.bar(theta, radii, width=widths, bottom=0.0)
 
 # Use custom colors and opacity
 for r, bar in zip(radii, bars):
+    a = [i*r for i in theta]
     bar.set_facecolor(plt.cm.viridis(r / 10.))
     bar.set_alpha(0.5)
