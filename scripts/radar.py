@@ -17,7 +17,10 @@ ax = plt.subplot(1,1,1, projection='polar')
 bars = ax.bar(theta, radii, width=widths, bottom=0.0)
 
 # Use custom colors and opacity
-for r, bar in zip(radii, bars):
-    a = [i*r for i in theta]
-    bar.set_facecolor(plt.cm.viridis(r / 10.))
+for rad, bar in zip(radii, bars):
+    a = []
+    for i in theta:
+        a_i = i*rad
+        a.append(a_i)
+    bar.set_facecolor(plt.cm.viridis(rad / 10.))
     bar.set_alpha(0.5)
