@@ -68,6 +68,9 @@
 					\vspace{0.4em}
 				\end{table}
 			\end{frame}
+			\begin{frame}{Sometimes Less is More}
+				\centerline{\py{pytex_printonly('scripts/drs_activityANOVA.py')}}
+			\end{frame}
 	\section{Source}
 		\subsection{The Code, Workflow, and Environment Behind the Curtain}
 			\begin{frame}[fragile]{Typesetting the Previous Radar Plot}
@@ -98,6 +101,16 @@
 					\end{pyverbatim}
 				\end{minipage}
 			\end{frame}
+			\begin{frame}[fragile]{Typesetting the Previous Inline Statistic}
+				\begin{minipage}{0.07\textwidth}~\end{minipage}
+				\begin{minipage}{0.5\textwidth}
+					\begin{pyverbatim}
+						\py{
+							pytex_printonly('scripts/drs_activityANOVA.py')
+							}
+					\end{pyverbatim}
+				\end{minipage}
+			\end{frame}
 			\begin{frame}{The Framework Topology}
 				\begin{minipage}{0.45\textwidth}
 					\begin{itemize}
@@ -123,9 +136,14 @@
 					\centering
 					\includedot[width=\textwidth]{data/workflow}
 				\end{figure}
-				\begin{itemize}
-					\item \textcolor{vlg}{Time is ripe for code-document integration, cf. Sayako, Antonio, etc.}
-				\end{itemize}
+				\textcolor{vlg}{Time is ripe for code-document integration, cf.:}
+				\begin{multicols}{3}
+					\begin{itemize}
+						\item \textcolor{vlg}{Sayako}
+						\item \textcolor{vlg}{Antonio}
+						\item \textcolor{vlg}{et al.}
+					\end{itemize}
+				\end{multicols}
 			\end{frame}
 			\begin{frame}{Minimal First-Level Dependencies}
 				\inputminted[bgcolor=tlg,firstline=18,lastline=25]{bash}{.gentoo/app-text/repsep/repsep-99999.ebuild}
