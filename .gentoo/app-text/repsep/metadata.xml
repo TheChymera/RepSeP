@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>horea.christ@gmail.com</email>
+		<name>Horea Christian</name>
+	</maintainer>
+	<longdescription lang="en">
+		The Reproducible Self Publishing toolkit demonstrates how to reuse
+		your favourite data analysis workflows in order to seamlessly include
+		quasi-dynamic publication-quality output (e.g. figures, tables, or
+		statistic reports) in the most common science communication formats.
+	</longdescription>
+	<upstream>
+		<remote-id type="github">TheChymera/RepSeP</remote-id>
+	</upstream>
+</pkgmetadata>
