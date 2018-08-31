@@ -4,7 +4,7 @@ TARGET="${1}"
 WHITELIST="
 	article.tex
 	poster.tex
-	pres.tex
+	slides.tex
 	"
 
 if [ $TARGET = "all" ]; then
