@@ -8,7 +8,7 @@
 		\titlepage
 	\end{frame}
 	\section{Publishing}
-		\subsection{FOSSci Publishing}
+		\subsection{Free and Open Scientific Publishing}
 			\begin{frame}{Publish From Code, Openly.}
 				\begin{itemize}
 					\item Transparency $\longrightarrow$ verifiability.
@@ -35,6 +35,8 @@
 					\item Slides.
 					\item “Notebooks” integrate poorly with both presentation and development.
 				\end{itemize}
+				\vspace{2.5em}
+				\centerline{\Huge \textcolor{rsblue}{\TeX}}
 			\end{frame}
 	\section{Features}
 		\subsection{Create All Graphic Elements Directly from Source.}
@@ -111,7 +113,7 @@
 					\end{figure}
 				\end{minipage}
 			\end{frame}
-			\begin{frame}{The Extended Workflow}
+			\begin{frame}{The Workflow}
 				\begin{itemize}
 					\item Asynchronous offloading for time-consuming analysis.
 					\item Separate packaging for deep analysis stacks.
@@ -121,20 +123,51 @@
 					\centering
 					\includedot[width=\textwidth]{data/workflow}
 				\end{figure}
-			\end{frame}
-	\section{Examples}
-		\subsection{Fork and Go}
-			\begin{frame}{F/OSP Repos You Can Use Right Now}
 				\begin{itemize}
-					\item This publication (also as poster and article draft):
-						\begin{itemize}
-							\item \href{https://github.com/TheChymera/RepSeP}{github.com/TheChymera/RepSeP}
-						\end{itemize}
-					\item EuroSciPy 2017 posters (compiled versions outside):
-						\begin{itemize}
-							\item \href{https://bitbucket.org/TheChymera/behaviopy\_repsep/}{bitbucket.org/TheChymera/behaviopy\_repsep}
-							\item \href{https://bitbucket.org/faymanns/poster}{bitbucket.org/faymanns/poster}
-						\end{itemize}
+					\item \textcolor{vlg}{Time is ripe for code-to-document integration, cf. Sayako Kodera et al.}
 				\end{itemize}
+			\end{frame}
+			\begin{frame}{Minimal First-Level Dependencies}
+				\inputminted[bgcolor=tlg,firstline=18,lastline=25]{bash}{.gentoo/app-text/repsep/repsep-99999.ebuild}
+				Following the Package Manager Standard (PMS):
+				\begin{itemize}
+					\item Because dependency graphs should never be managed ad hoc.
+				\end{itemize}
+			\end{frame}
+	\section{You}
+		\subsection{How You Can Benefit from This Right Now.}
+			\begin{frame}{Co-Author the Reference Implementation}
+				\begin{itemize}
+					\item The \colorbox{tlg}{\texttt{article.tex}} reference document is still in early draft.
+					\item You can contribute, fork, and publish it however you want.
+				\end{itemize}
+			\end{frame}
+			\begin{frame}{Gain the Best Exposure for Your most Underexposed Work}
+				\begin{itemize}
+					\item Pay-for-Paywall vs. “Direct Market Access”.
+				\end{itemize}
+				\begin{minipage}{0.49\textwidth}
+					\begin{figure}
+						\centering
+						\includegraphics[width=0.99\textwidth]{img/elsevier.pdf}
+					\end{figure}
+				\end{minipage}
+			\end{frame}
+			\begin{frame}{Gain the Best Exposure for Your most Underexposed Work}
+				\begin{itemize}
+					\item Pay-for-Paywall vs. “Direct Market Access”.
+				\end{itemize}
+				\begin{minipage}{0.49\textwidth}
+					\begin{figure}
+						\centering
+						\includegraphics[width=0.99\textwidth]{img/elsevier.pdf}
+					\end{figure}
+				\end{minipage}
+				\begin{minipage}{0.49\textwidth}
+					\begin{figure}
+						\centering
+						\includegraphics[width=0.99\textwidth]{img/repsep.pdf}
+					\end{figure}
+				\end{minipage}
 			\end{frame}
 \end{document}

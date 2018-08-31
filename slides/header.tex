@@ -16,6 +16,7 @@
 \usepackage{soul} %strikethrough via \st{}
 \usepackage[autoprint=false, gobble=auto, keeptemps=all, pyfuture=all]{pythontex} % create figures on-line directly from python!
 \usepackage{graphviz}
+\usepackage{minted}
 
 \input{pythontex/functions.tex}
 \begin{pythontexcustomcode}[begin]{py}
@@ -38,6 +39,7 @@ pytex.add_dependencies(DOC_STYLE, 'slides/3dplot.conf')
 \makeatother
 
 \definecolor{dy}{RGB}{202,202,0}
+\definecolor{rsblue}{HTML}{00a3cc}
 \definecolor{mg}{gray}{0.30}
 \definecolor{lg}{gray}{0.60}
 \definecolor{vlg}{gray}{0.78}
