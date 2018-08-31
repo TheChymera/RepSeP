@@ -26,16 +26,8 @@ As no binaries are tracked, publications built analogously to our examples are e
 
 ## Dependencies
 
-We distribute [a full list of uniquely identifiable dependencies](.portage.deps) and their associated version constraints, in the format laid out by the [Package Management Specificaton](https://dev.gentoo.org/~ulm/pms/head/pms.html#x1-190003.1.2).
+We distribute [a full list of uniquely identifiable dependencies](.gentoo/app-text/repsep/repsep-99999.ebuild) and their associated version constraints, in the format laid out by the [Package Management Specificaton](https://dev.gentoo.org/~ulm/pms/head/pms.html#x1-190003.1.2).
 Depending on your distribution (and/or package manager), you may find helpful isntructions on how to best install the dependencies below.
-
-### Gentoo (Portage)
-
-As root, run:
-
-```
-emerge -av $(<.portage.deps)
-```
 
 ## Examples
 
