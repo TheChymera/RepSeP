@@ -8,9 +8,9 @@ digraph graphname {
     a[label="Low Iteration   ", shape=cds, color="#BBBBBB", fillcolor=grey93];
     b[label="    Raw Data    \n[binary]", shape=note, color="#BBBBBB", fillcolor=grey93];
     c[label="   Deep Analysis   \nStack", shape=folder, color="#BBBBBB", fillcolor=grey93];
-    d[label="Top-Level Data\n[.csv]", shape=note, color="#BBBBBB", fillcolor=grey93];
+    d[label="Top-Level Data\n[.csv]", shape=note, color="#FFFFFF", fillcolor="#00a3cc", fontcolor="#FFFFFF"];
     e[label="High Iteration  ", shape=cds, color="#BBBBBB", fillcolor=grey93];
-    f[label="Top-Level Data\n[.csv]", shape=note, color="#BBBBBB", fillcolor=grey93];
+    f[label="Top-Level Data\n[.csv]", shape=note, color="#FFFFFF", fillcolor="#00a3cc", fontcolor="#FFFFFF"];
     g[label="Top-Level Analysis\nStack", shape=folder, color="#BBBBBB", fillcolor=grey93];
     h[label="   Presentable  \nDocument", shape=note, color="#BBBBBB", fillcolor=grey93];
     subgraph cluster0 {
