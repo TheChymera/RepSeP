@@ -1,0 +1,81 @@
+digraph graphname {
+    size="14,8";
+    rankdir="LR";
+    graph [fontname = "sans"];
+    node [fontname = "sans", style=filled];
+    edge [fontname = "sans", color=gray50];
+    a[label="article.tex", shape=note, color="#BBBBBB", fillcolor=grey93];
+    b[label="poster.tex ", shape=note, color="#BBBBBB", fillcolor=grey93];
+    c[label="slides.tex ", shape=note, color="#BBBBBB", fillcolor=grey93];
+    d[label=" header.tex ", shape=note, color="#BBBBBB", fillcolor=grey93];
+    d_[label="        ...       ", shape=note, color="#BBBBBB", fillcolor=grey93, fontcolor="#999998"];
+    e[label="abstract.tex", shape=note, color="#BBBBBB", fillcolor=grey93];
+    f[label=" header.tex ", shape=note, color="#BBBBBB", fillcolor=grey93];
+    f_[label="        ...       ", shape=note, color="#BBBBBB", fillcolor=grey93, fontcolor="#999998"];
+    g[label=" header.tex ", shape=note, color="#BBBBBB", fillcolor=grey93];
+    g_[label="        ...       ", shape=note, color="#BBBBBB", fillcolor=grey93, fontcolor="#999998"];
+    x0[label="script1.py", shape=note, color="#BBBBBB", fillcolor=grey93];
+    x1[label="script2.py", shape=note, color="#BBBBBB", fillcolor=grey93];
+    x2[label="script3.py", shape=note, color="#BBBBBB", fillcolor=grey93];
+    y[label="data_A.py", shape=note, color="#BBBBBB", fillcolor=grey93];
+    subgraph cluster0 {
+        subgraph cluster1 {
+            d;
+            d_;
+            label = "article/";
+            fontcolor = "#00a3cc";
+            color = "#00a3cc";
+        }
+        subgraph cluster2 {
+            f;
+            f_;
+            label = "poster/";
+            fontcolor = "#00a3cc";
+            color = "#00a3cc";
+        }
+        subgraph cluster3 {
+            g;
+            g_;
+            label = "slides/";
+            fontcolor = "#00a3cc";
+            color = "#00a3cc";
+        }
+        subgraph cluster4 {
+            x0;
+            x1;
+            x2;
+            label = "scripts/";
+            fontcolor = "#00a3cc";
+            color = "#00a3cc";
+        }
+        subgraph cluster5 {
+            y;
+            label = "data/";
+            fontcolor = "#00a3cc";
+            color = "#00a3cc";
+        }
+        a:e -> d:w;
+        a:e -> d_:w;
+        a:e -> e:w;
+        b:e -> e:w;
+        b:e -> f:w;
+        b:e -> f_:w;
+        c:e -> g:w;
+        c:e -> g_:w;
+        d_:e -> x0:w;
+        d_:e -> x1:w;
+        d_:e -> x2:w;
+        f_:e -> x0:w;
+        f_:e -> x1:w;
+        f_:e -> x2:w;
+        g_:e -> x0:w;
+        g_:e -> x1:w;
+        g_:e -> x2:w;
+        label = "RepSeP/";
+        fontcolor = "#00a3cc";
+        color = "#00a3cc";
+        x1 -> y [constraint=false];
+        g_ -> y [style=invis];
+        {rank=same; a; b; c}
+    }
+}

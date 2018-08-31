@@ -1,0 +1,140 @@
+\input{slides/header.tex}
+\title[Reproducible Self-Publication via Python\TeX\ --- Introduction and Reference Slides]{Reproducible Self-Publication via Python\TeX}
+\subtitle{Introduction and Reference Slides\\\href{https://github.com/TheChymera/RepSeP}{\small\texttt{[ github.com/TheChymera/RepSeP ]}}}
+\author[Horea Christian]{Horea Christian\\\href{https://twitter.com/TheChymera}{\small\texttt{[ @TheChymera ]}}}
+\institute{Institute for Biomedical Engineering, ETH and University of Zürich}
+\begin{document}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	\section{Publishing}
+		\subsection{FOSSci Publishing}
+			\begin{frame}{Publish From Code, Openly.}
+				\begin{itemize}
+					\item Transparency $\longrightarrow$ verifiability.
+					\item Reproducibility $\longrightarrow$ hackability.
+					\item Version management support:
+					\begin{itemize}
+						\item \colorbox{tlg}{\texttt{diff}}-ability.
+						\item \colorbox{tlg}{\texttt{blame}}-ability.
+					\end{itemize}
+				\end{itemize}
+			\end{frame}
+			\begin{frame}{Publish in a Distributed Model, Free.}
+				\begin{itemize}
+					\item No entry barrier $\longrightarrow$ citizen science.
+					\item No institutional bias $\longrightarrow$ free science.
+					\item \textit{Less} publication bias $\longrightarrow$ honest science.
+					\item “Direct Market Access”.
+				\end{itemize}
+			\end{frame}
+			\begin{frame}{Publish, in a Presentable Format.}
+				\begin{itemize}
+					\item Article.
+					\item Poster.
+					\item Slides.
+					\item “Notebooks” integrate poorly with both presentation and development.
+				\end{itemize}
+			\end{frame}
+	\section{Features}
+		\subsection{Create All Graphic Elements Directly from Source.}
+			\begin{frame}{}
+				\py{pytex_fig('scripts/3dplot.py', conf='slides/3dplot.conf', label='3dplot', caption='A 3D plot.')}
+			\end{frame}
+			\begin{frame}{}
+				\py{pytex_fig('scripts/bsc_percentage.py', conf='slides/tall.conf', label='bsc_percentage', caption='Percentage of Bachelor’s degrees conferred to women in the U.S.A. by major (1970-2011).')}
+			\end{frame}
+			\begin{frame}{}
+				\py{
+					pytex_fig('scripts/radar.py',
+						label='radar',
+						caption='A radar plot.',
+						)
+					}
+			\end{frame}
+			\begin{frame}{}
+				\begin{table}[]
+					\vspace{0.4em}
+						\py{
+							pytex_tab('scripts/small_table.py',
+								label='sp',
+								caption='Sucrose preference table.',
+								options='\\tiny',
+								data='data/sucrosepreference.csv',
+								)
+							}
+					\vspace{0.4em}
+				\end{table}
+			\end{frame}
+	\section{Source}
+		\subsection{The Code, Workflow, and Environment Behind the Curtain}
+			\begin{frame}[fragile]{Typesetting the Previous Radar Plot}
+				\begin{minipage}{0.15\textwidth}~\end{minipage}
+				\begin{minipage}{0.5\textwidth}
+					\begin{pyverbatim}
+						\py{
+							pytex_fig('scripts/radar.py',
+								label='radar',
+								caption='A radar plot.',
+								)
+							}
+					\end{pyverbatim}
+				\end{minipage}
+			\end{frame}
+			\begin{frame}[fragile]{Typesetting the Previous Table}
+				\begin{minipage}{0.15\textwidth}~\end{minipage}
+				\begin{minipage}{0.5\textwidth}
+					\begin{pyverbatim}
+						\py{
+							pytex_tab('scripts/small_table.py',
+								label='sp',
+								caption='Sucrose preference table.',
+								options='\\tiny',
+								data='data/sucrosepreference.csv',
+								)
+							}
+					\end{pyverbatim}
+				\end{minipage}
+			\end{frame}
+			\begin{frame}{The Framework Topology}
+				\begin{minipage}{0.45\textwidth}
+					\begin{itemize}
+						\item Reduced information duplication.
+						\item Continuous development support.
+					\end{itemize}
+				\end{minipage}
+				\begin{minipage}{0.52\textwidth}
+					\vspace{-3em}
+					\begin{figure}
+						\centering
+						\includedot[width=1.1\textwidth]{data/topology}
+					\end{figure}
+				\end{minipage}
+			\end{frame}
+			\begin{frame}{The Extended Workflow}
+				\begin{itemize}
+					\item Asynchronous offloading for time-consuming analysis.
+					\item Separate packaging for deep analysis stacks.
+				\end{itemize}
+				\vspace{-2em}
+				\begin{figure}
+					\centering
+					\includedot[width=\textwidth]{data/workflow}
+				\end{figure}
+			\end{frame}
+	\section{Examples}
+		\subsection{Fork and Go}
+			\begin{frame}{F/OSP Repos You Can Use Right Now}
+				\begin{itemize}
+					\item This publication (also as poster and article draft):
+						\begin{itemize}
+							\item \href{https://github.com/TheChymera/RepSeP}{github.com/TheChymera/RepSeP}
+						\end{itemize}
+					\item EuroSciPy 2017 posters (compiled versions outside):
+						\begin{itemize}
+							\item \href{https://bitbucket.org/TheChymera/behaviopy\_repsep/}{bitbucket.org/TheChymera/behaviopy\_repsep}
+							\item \href{https://bitbucket.org/faymanns/poster}{bitbucket.org/faymanns/poster}
+						\end{itemize}
+				\end{itemize}
+			\end{frame}
+\end{document}

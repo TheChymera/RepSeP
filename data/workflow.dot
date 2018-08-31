@@ -1,0 +1,32 @@
+digraph graphname {
+    size="14,8";
+    rankdir="LR";
+    splines=ortho;
+    graph [fontname = "sans"];
+    node [fontname = "sans", style=filled];
+    edge [fontname = "sans", color=gray50];
+    a[label="Low Iteration   ", shape=cds, color="#BBBBBB", fillcolor=grey93];
+    b[label="    Raw Data    \n[binary]", shape=note, color="#BBBBBB", fillcolor=grey93];
+    c[label="   Deep Analysis   \nStack", shape=folder, color="#BBBBBB", fillcolor=grey93];
+    d[label="Top-Level Data\n[.csv]", shape=note, color="#BBBBBB", fillcolor=grey93];
+    e[label="High Iteration  ", shape=cds, color="#BBBBBB", fillcolor=grey93];
+    f[label="Top-Level Data\n[.csv]", shape=note, color="#BBBBBB", fillcolor=grey93];
+    g[label="Top-Level Analysis\nStack", shape=folder, color="#BBBBBB", fillcolor=grey93];
+    h[label="   Presentable  \nDocument", shape=note, color="#BBBBBB", fillcolor=grey93];
+    subgraph cluster0 {
+        a -> b;
+        b -> c;
+        c -> d;
+        label = "HPC";
+        fontcolor = "#00a3cc";
+        color = "#00a3cc";
+    }
+    d:s -> f:n [constraint=false];
+    subgraph cluster1 {
+        e -> f;
+        f -> g;
+        g -> h;
+        fontcolor = "#00a3cc";
+        color = "#00a3cc";
+    }
+}

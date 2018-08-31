@@ -1,0 +1,54 @@
+\documentclass[xcolor=table,aspectratio=43,dvipsnames]{beamer}
+% \documentclass[xcolor=table]{beamer}
+\usepackage{bm}
+\usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+% \usepackage{cmbright}
+% \usepackage[german, english]{babel} % required for rendering German special characters
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{multicol}
+\usepackage{siunitx} %pretty measurement unit rendering
+\usepackage{multirow} %required for auto-generated tables http://www.tablesgenerator.com/
+\usepackage[thinlines]{easytable}
+\usepackage{hyperref} %enable hyperlink for urls
+\usepackage{grffile} %determine file extension via LAST dot
+\usepackage{soul} %strikethrough via \st{}
+\usepackage[autoprint=false, gobble=auto, keeptemps=all, pyfuture=all]{pythontex} % create figures on-line directly from python!
+\usepackage{graphviz}
+
+\input{pythontex/functions.tex}
+\begin{pythontexcustomcode}[begin]{py}
+DOC_STYLE = 'slides/main.conf' 
+pytex.add_dependencies(DOC_STYLE, 'slides/3dplot.conf')
+\end{pythontexcustomcode}
+ 
+
+\DeclareUnicodeCharacter{00A0}{ }
+\setbeamersize{text margin left=0.8em,text margin right=0.8em}
+
+\DeclareSIUnit\pixel{px}
+
+\usecolortheme[RGB={199,199,199}]{structure}
+\usetheme{Dresden}
+
+\newenvironment{figurehere}
+{\def\@captype{figure}}
+{}
+\makeatother
+
+\definecolor{dy}{RGB}{202,202,0}
+\definecolor{mg}{gray}{0.30}
+\definecolor{lg}{gray}{0.60}
+\definecolor{vlg}{gray}{0.78}
+\definecolor{tlg}{gray}{0.88}
+
+\setbeamercolor{caption name}{fg=lg}
+\setbeamercolor{caption}{fg=lg}
+\setbeamercolor{author}{fg=lg}
+\setbeamercolor{institute}{fg=lg}
+\setbeamercolor{date}{fg=lg}
+\setbeamercolor{title}{fg=mg}
+\setbeamertemplate{caption}{\centering\insertcaption\par}
+\setbeamertemplate{navigation symbols}{}
+
