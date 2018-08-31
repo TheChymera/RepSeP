@@ -20,6 +20,7 @@ RDEPEND="
 	dev-python/matplotlib[${PYTHON_USEDEP}]
 	dev-python/numpy[${PYTHON_USEDEP}]
 	dev-python/pandas[${PYTHON_USEDEP}]
+	>=dev-python/statsmodels-0.9.0[${PYTHON_USEDEP}]
 	>=dev-tex/pythontex-0.16[${PYTHON_USEDEP}]
 	dev-texlive/texlive-latex
 	"
