@@ -1,3 +1,5 @@
+![RepSeP Logo](img/repsep.png?raw=true "RepSeP Logo")
+
 # RepSeP
 
 The **Rep**roducible **Se**lf **P**ublishing toolkit demonstrates how to reuse your favourite data analysis workflows in order to seamlessly include quasi-dynamic publication-quality output (e.g. figures, tables, or statistic reports) in the most common science communication formats. Currently we provide examples for:
