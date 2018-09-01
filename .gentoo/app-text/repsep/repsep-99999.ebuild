@@ -23,6 +23,7 @@ RDEPEND="
 	>=dev-python/statsmodels-0.9.0[${PYTHON_USEDEP}]
 	>=dev-tex/pythontex-0.16[${PYTHON_USEDEP}]
 	dev-texlive/texlive-latex
+	media-gfx/graphviz[${PYTHON_USEDEP}]
 	"
 
 src_unpack() {
