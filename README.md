@@ -1,4 +1,4 @@
-![RepSeP Logo](img/repsep.png?raw=true "RepSeP Logo")
+[![RepSeP Logo](img/repsep.png?raw=true "RepSeP Logo")](http://chymera.eu)
 
 # RepSeP
 
