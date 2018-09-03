@@ -28,10 +28,20 @@ As no binaries are tracked, publications built analogously to our examples are e
 
 ## Dependencies
 
-We distribute [a full list of uniquely identifiable dependencies](.gentoo/app-text/repsep/repsep-99999.ebuild) and their associated version constraints, in the format laid out by the [Package Management Specificaton](https://dev.gentoo.org/~ulm/pms/head/pms.html#x1-190003.1.2).
-Depending on your distribution (and/or package manager), you may find helpful isntructions on how to best install the dependencies below.
+### Automatic Install
 
-List of dependencies:
+Dependencies can be automatically installed by any package manager which respects the [Package Manager Soecification](https://dev.gentoo.org/~ulm/pms/head/pms.html).
+This is done by running the install file as root with the following commands:
+
+```
+cd RepSeP/.gentoo
+./install.sh -oav
+```
+
+### Manual Install
+
+The most precise description of the dependency graph (including conditionality) can be extracted from the [RepSeP ebuild](.gentoo/sci-biology/repsep/repsep-99999.ebuild).
+Alternatively you may refer to the following list:
 
 * [matplotlib](https://matplotlib.org/)
 * [numpy](https://www.numpy.org/)
@@ -40,13 +50,9 @@ List of dependencies:
 * [texlive-latex](https://www.tug.org/texlive/)
 * [graphviz](https://www.graphviz.org/)
 
-Note that it is likely that you'll have to install pythontex from source
-([gpoore/pythontex](https://github.com/gpoore/pythontex)). To do this, clone
-the repo and follow the [installation instructions](https://github.com/gpoore/pythontex/blob/master/pythontex/pythontex.pdf).
-
 ## Examples
 
 ### Posters
 
 * [BehavioPy Poster](https://bitbucket.org/TheChymera/behaviopy_repsep/), versions presented at:
-  * [EuroSciPy 2017](https://bitbucket.org/TheChymera/behaviopy_repsep/raw/7d626813659efa1345efbf07faafaa9a6bcf3876/poster.pdf) in Erlangen (DE)
+	* [EuroSciPy 2017](https://bitbucket.org/TheChymera/behaviopy_repsep/raw/7d626813659efa1345efbf07faafaa9a6bcf3876/poster.pdf) in Erlangen (DE)
