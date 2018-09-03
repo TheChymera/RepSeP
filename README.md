@@ -1,4 +1,4 @@
-[![RepSeP Logo](img/repsep.png?raw=true "RepSeP Logo")](http://chymera.eu)
+[![RepSeP Logo](img/repsep.png?raw=true "RepSeP Logo")](https://github.com/TheChymera/RepSeP/releases/tag/0.0.1)
 
 # RepSeP
 
