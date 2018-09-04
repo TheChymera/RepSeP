@@ -22,8 +22,8 @@ As no binaries are tracked, publications built analogously to our examples are e
 
 * Clone this repository: `git clone git@github.com:TheChymera/RepSeP.git`
 * Install the dependencies ([listed below](#dependencies)).
-* Edit the document files ([`slides.tex`](slides.tex), [`poster.tex`](poster.tex), [`article.tex`](article.tex)) to contain your own research output.
-* Compile the documents, e.g.: `./compile slides`
+* Edit the document files ([`article.tex`](article.tex), [`poster.tex`](poster.tex), [`slides.tex`](slides.tex)) to contain your own research output.
+* Compile the documents, e.g.: `./compile article`, `./compile poster`, `./compile slides`, `./compile all`.
 * Distribute the output and links to your fork of this repository via your favourite outreach channels.
 
 ## Dependencies
