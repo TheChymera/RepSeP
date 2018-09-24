@@ -29,17 +29,22 @@
 				\end{itemize}
 			\end{frame}
 			\begin{frame}{Publish, in a Presentable Format.}
-				\begin{itemize}
-					\item Article.
-					\item Poster.
-					\item Slides.
-					\item “Notebooks” integrate poorly with both presentation and development.
-				\end{itemize}
-				\vspace{1.5em}
-				\begin{figure}
-					\centering
-					\includegraphics[width=0.2\textwidth]{img/pythontex.pdf}
-				\end{figure}
+				\noindent\makebox[\textwidth][c]{%
+					\begin{minipage}{.35\textwidth}
+						\begin{itemize}
+							\item Article.
+							\item Poster.
+							\item Slides.
+						\end{itemize}
+					\end{minipage}
+					\begin{minipage}{.35\textwidth}
+						\begin{figure}
+							\centering
+							\includegraphics[width=0.6\textwidth]{img/pythontex.pdf}
+						\end{figure}
+					\end{minipage}
+				}\vspace{3em}
+				\centering (“Notebooks” integrate poorly with both presentation and development.)
 			\end{frame}
 	\section{Features}
 		\subsection{Create All Graphic Elements Directly from Source.}
@@ -47,9 +52,11 @@
 				\py{pytex_fig('scripts/3dplot.py', conf='slides/3dplot.conf', label='3dplot', caption='A 3D plot.')}
 			\end{frame}
 			\begin{frame}{}
+				\setlength\abovecaptionskip{-5pt}
 				\py{pytex_fig('scripts/bsc_percentage.py', conf='slides/tall.conf', label='bsc_percentage', caption='Percentage of Bachelor’s degrees conferred to women in the U.S.A. by major (1970-2011).')}
 			\end{frame}
 			\begin{frame}{}
+				\setlength\abovecaptionskip{-5pt}
 				\py{
 					pytex_fig('scripts/radar.py',
 						label='radar',
@@ -115,17 +122,17 @@
 				\end{minipage}
 			\end{frame}
 			\begin{frame}{The Framework Topology}
-				\begin{minipage}{0.45\textwidth}
+				\begin{minipage}{0.55\textwidth}
 					\begin{itemize}
 						\item Reduced information duplication.
 						\item Continuous development support.
 					\end{itemize}
 				\end{minipage}
-				\begin{minipage}{0.52\textwidth}
+				\begin{minipage}{0.43\textwidth}
 					\vspace{-3em}
 					\begin{figure}
 						\centering
-						\includedot[width=1.1\textwidth]{data/topology}
+						\includedot[width=0.9\textwidth]{data/topology}
 					\end{figure}
 				\end{minipage}
 			\end{frame}
@@ -162,7 +169,7 @@
 				\begin{minipage}{0.49\textwidth}
 					\begin{figure}
 						\centering
-						\includegraphics[width=0.99\textwidth]{img/elsevier.pdf}
+						\includegraphics[width=0.8\textwidth]{img/elsevier.pdf}
 					\end{figure}
 				\end{minipage}
 			\end{frame}
@@ -173,13 +180,13 @@
 				\begin{minipage}{0.49\textwidth}
 					\begin{figure}
 						\centering
-						\includegraphics[width=0.99\textwidth]{img/elsevier.pdf}
+						\includegraphics[width=0.8\textwidth]{img/elsevier.pdf}
 					\end{figure}
 				\end{minipage}
 				\begin{minipage}{0.49\textwidth}
 					\begin{figure}
 						\centering
-						\includegraphics[width=0.99\textwidth]{img/repsep.pdf}
+						\includegraphics[width=0.8\textwidth]{img/repsep.pdf}
 					\end{figure}
 				\end{minipage}
 			\end{frame}
