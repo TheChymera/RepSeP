@@ -34,7 +34,18 @@ def pytex_printonly(script, data=''):
 
 	return s.getvalue()
 
-def pytex_tab(script, caption='', label='', options='', data=''):
+def pytex_tab(script,
+	caption='',
+	label='',
+	options_post='',
+	options_pre='',
+	data='',
+	):
+	"""
+	Print a LaTeX formatted table (including outer table environment and additional options), based on a script which returns an inner tabular environment and table structure.
+	Such scripts are best created using Pandas' `pd.to_latex()` function.
+	"""
+	pytex.add_dependencies(script)
 	import sys
 	try:
 		from StringIO import StringIO
@@ -57,7 +68,12 @@ def pytex_tab(script, caption='', label='', options='', data=''):
 	with stdoutIO() as s:
 		exec(open(script).read(), locals())
 
-	tab = latex_table(s.getvalue(), caption=caption, label=label, options=options)
+	tab = latex_table(s.getvalue(),
+		caption=caption,
+		label=label,
+		options_post=options_post,
+		options_pre=options_pre,
+		)
 	return tab
 
 def pytex_subfigs(scripts,
@@ -82,15 +98,20 @@ def pytex_subfigs(scripts,
 		except KeyError:
 			script_label=''
 		try:
-			script_options = script['options']
+			script_options_post = script['options_post']
 		except KeyError:
-			script_options=''
+			script_options_post=''
+		try:
+			script_options_pre = script['options_pre']
+		except KeyError:
+			script_options_pre=''
 		subfig = pytex_fig(script['script'],
 			conf=script_conf,
 			caption=script_caption,
 			label=script_label,
 			environment='subfigure',
-			options=script_options,
+			options_post=script_options_post,
+			options_pre=script_options_pre,
 			)
 		subfigs += subfig
 		subfigs += '\\hfill\n'
@@ -105,7 +126,8 @@ def pytex_fig(script,
 	label='',
 	multicol=False,
 	environment='figure',
-	options='[htp]'
+	options_post='',
+	options_pre='[htp]'
 	):
 	'''
 	Executes a Python script while applying the custom style.
@@ -120,7 +142,7 @@ def pytex_fig(script,
 	try:
 		document_style = DOC_STYLE
 	except NameError:
-		document_style = 'pythontex/minimal.conf'
+		document_style = ''
 	#for some reason this needs to be applied here, in addition to the context application
 	#below (where it can be omitted, but is needed to make sure the `figre_styles` variable is populated).
 	plt.style.use(document_style)
@@ -136,7 +158,12 @@ def pytex_fig(script,
 		exec(open(script).read())
 	if multicol:
 		environment='figure*'
-	fig = latex_figure(save_fig(), environment, caption=caption, label=label, options=options)
+	fig = latex_figure(save_fig(), environment,
+		caption=caption,
+		label=label,
+		options_post=options_post,
+		options_pre=options_pre,
+		)
 	return fig
 
 def figure_by_path(figure_path,textheight_frac=1,caption=None,label=None):
@@ -176,22 +203,45 @@ def save_fig(name='', legend=False, fig=None, ext='.pgf'):
 	plt.close('all')
 	return name
 
-def latex_environment(name, content='', options=''):
-	'''
+def latex_environment(name,
+	content='',
+	options_post='',
+	options_pre='',
+	):
+	"""
 	Simple helper function to write the `\begin...\end` LaTeX block.
-	'''
-	return '\\begin{%s}%s\n%s\n\\end{%s}' % (name, options, content, name)
+	"""
+	return '\\begin{%s}%s%s%s\\end{%s}' % (name, options_pre, content, options_post, name)
 
-def latex_table(table, caption='', label='', options=''):
+def latex_table(table,
+	caption='',
+	label='',
+	options_post='',
+	options_pre='',
+	):
+	"""
+	Add caption and label to an inner tabular environment and than wrap in the outer LaTeX `'table'` environment.
+	"""
 	content = table
-	content += "\\caption{%s\\label{%s:%s}}\n" % (caption, "tab", label)
-	return latex_environment("table", content=content, options=options)
+	caption= "\\caption{%s\\label{%s:%s}}\n" % (caption, "tab", label)
+	options_post += caption
+	return latex_environment("table",
+		content=content,
+		options_post=options_post,
+		options_pre=options_pre,
+		)
 
-def latex_figure(name, environment, caption='', label='', width=1, options='[htp]'):
-	''''
+def latex_figure(name, environment,
+	caption='',
+	label='',
+	width=1,
+	options_post='',
+	options_pre='[htp]',
+	):
+	"""
 	Auto wrap `name` in a LaTeX figure environment.
 	Width is a fraction of `\textwidth`.
-	'''
+	"""
 	if not name:
 		name = save_fig()
 	content = '\\centering\n'
@@ -204,7 +254,11 @@ def latex_figure(name, environment, caption='', label='', width=1, options='[htp
 	if caption:
 		# `\label` needs to be in `\caption` to avoid issues in some cases
 		content += "\\caption{%s\\label{%s:%s}}\n" % (caption, fig_label_prefix, label)
-	return latex_environment(environment, content, options)
+	return latex_environment(environment,
+		content=content,
+		options_pre=options_pre,
+		options_post=options_post,
+		)
 
 pytex.bio_fignum = 0
 #global pytex # try without this line
