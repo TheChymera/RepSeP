@@ -1,21 +1,9 @@
 \documentclass[xcolor=table,aspectratio=169,dvipsnames]{beamer}
 \usepackage{bm}
 \usepackage[utf8]{inputenc}
-\usepackage{booktabs}
 \usepackage{color}
-\usepackage{multicol}
-\usepackage{hyperref} %enable hyperlink for urls
 \usepackage[autoprint=false, gobble=auto, keeptemps=all, pyfuture=all]{pythontex} % create figures on-line directly from python!
-\usepackage{graphviz}
-\usepackage{minted}
-\usepackage{subcaption}
 
-\input{pythontex/functions.py}
-\begin{pythontexcustomcode}[begin]{py}
-DOC_STYLE = 'slides/main.conf' 
-pytex.add_dependencies(DOC_STYLE, 'slides/3dplot.conf')
-\end{pythontexcustomcode}
- 
 \setbeamersize{text margin left=0.8em,text margin right=0.8em}
 
 \usecolortheme[RGB={199,199,199}]{structure}
@@ -41,3 +29,11 @@ pytex.add_dependencies(DOC_STYLE, 'slides/3dplot.conf')
 \setbeamercolor{title}{fg=mg}
 \setbeamertemplate{caption}{\centering\insertcaption\par}
 \setbeamertemplate{navigation symbols}{}
+
+% Additional Pythontex
+\begin{pythontexcustomcode}[begin]{py}
+DOC_STYLE = 'slides/main.conf'
+pytex.add_dependencies(DOC_STYLE,
+	'slides/1col.conf',
+	)
+\end{pythontexcustomcode}

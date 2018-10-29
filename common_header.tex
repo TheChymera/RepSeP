@@ -1,0 +1,21 @@
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{graphviz}
+\usepackage{hyperref} %enable hyperlink for urls
+\usepackage{makecell}
+\usepackage{minted}
+\usepackage{multicol}
+\usepackage{siunitx}
+\usepackage{subcaption}
+
+\sisetup{detect-all} % will use the current font for typesetting
+\newcommand\SIci[5]{\SI{#1}{#2}, {#3}CI: \SIrange{#4}{#5}{#2}}
+
+\input{pythontex/functions.py}
+\begin{pythontexcustomcode}[begin]{py}
+pytex.add_dependencies(DOC_STYLE,
+	'lib/utils.py',
+	'lib/categorical.py',
+	'data/JogB.tsv'
+	)
+\end{pythontexcustomcode}
