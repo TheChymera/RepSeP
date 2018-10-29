@@ -55,14 +55,15 @@
 				\setlength\abovecaptionskip{-5pt}
 				\py{pytex_fig('scripts/bsc_percentage.py', conf='slides/tall.conf', label='bsc_percentage', caption='Percentage of Bachelor’s degrees conferred to women in the U.S.A. by major (1970-2011).')}
 			\end{frame}
-			\begin{frame}{}
-				\setlength\abovecaptionskip{-5pt}
-				\py{
-					pytex_fig('scripts/radar.py',
-						label='radar',
-						caption='A radar plot.',
-						)
-					}
+			\begin{frame}{And So Much More}
+				\py{pytex_subfigs(
+					[
+						{'script':'scripts/vc_violin.py', 'label':'vcv', 'conf':'slides/1col.conf', 'options_pre':'{.48\\textwidth}',
+						},
+						{'script':'scripts/vcc_violin.py', 'label':'vccv','conf':'slides/1col.conf', 'options_pre':'{.48\\textwidth}',
+						},
+						],
+					label='fig:vc',)}
 			\end{frame}
 			\begin{frame}{}
 				\begin{table}[]
@@ -79,7 +80,14 @@
 				\end{table}
 			\end{frame}
 			\begin{frame}{Sometimes Less is More}
-				\centerline{\py{pytex_printonly('scripts/drs_activityANOVA.py')}}
+				\centerline{\py{pytex_printonly('scripts/anova.py')}}
+			\end{frame}
+			\begin{frame}{But Sometimes You Just Want More}
+				\begin{itemize}
+					\item Processing Factor: \py{boilerplate.fstatistic('Processing', condensed=True)}
+					\item Template Factor: \py{boilerplate.fstatistic('Template', condensed=True)}
+					\item Processing:Template Intearction: \py{boilerplate.fstatistic('Processing:Template', condensed=True)}
+				\end{itemize}
 			\end{frame}
 	\section{Source}
 		\subsection{The Code, Workflow, and Environment Behind the Curtain}
