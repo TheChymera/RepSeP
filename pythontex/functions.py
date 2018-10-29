@@ -3,6 +3,7 @@ import os, sys
 
 import matplotlib.pyplot as plt
 from pylab import gcf
+from lib import boilerplate
 
 # Set the prefix used for figure labels
 fig_label_prefix = 'fig'
@@ -79,11 +80,13 @@ def pytex_tab(script,
 def pytex_subfigs(scripts,
 	caption='',
 	label='',
+	main_environment='figure',
 	):
 	"""
 	Executes a series of Python scripts, grabbing the figures individually, and placing them as subfigures in a figure environment
 	"""
 	subfigs = '\\begin{figure*}[ht]\n'
+	subfigs = '\\begin{{{}}}[ht]\n'.format(main_environment)
 	for script in scripts:
 		try:
 			script_conf = script['conf']
@@ -117,7 +120,7 @@ def pytex_subfigs(scripts,
 		subfigs += '\\hfill\n'
 	subfigs += '\\caption{{{}}}\n'.format(caption)
 	subfigs += '\\label{{{}}}\n'.format(label)
-	subfigs += '\\end{figure*}'
+	subfigs += '\\end{{{}}}'.format(main_environment)
 	return subfigs
 
 def pytex_fig(script,
