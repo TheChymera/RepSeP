@@ -1,21 +1,24 @@
-\documentclass[10pt,a4paper,twocolumn,german]{article}
+\documentclass[10pt,a4paper,twocolumn,english]{article}
 
-\title{RepSeP Article --- an Article-Format Reproducible Self-Publishing Example}
+\title{An Optimized Registration Workflow and Standard Geometric Space for Small Animal Brain Imaging}
 \author{
 	\authorstyle{Horea-Ioan Ioanas\textsuperscript{1}}
+	\authorstyle{Markus Rudin\textsuperscript{1}}
 	\newline
 	\textsuperscript{1}\institution{Institute for Biomedical Engineering, ETH and University of Zurich}
 }
 \date{}
-\input{article/style.tex}
+\input{article/header.tex}
+\input{common_header.tex}
 
 \begin{document}
 \maketitle
 \thispagestyle{firstpage}
 \noindent
-\input{article/abstract.tex}
-\input{article/introduction.tex}
-\input{article/3d_plotting.tex}
-\input{article/other_plots.tex}
-\input{article/filler_sections.tex}
+\textsf{%
+\textbf{Abstract ---}
+	\input{abstract.tex}
+}
+
+\input{article/background.tex}
 \end{document}
