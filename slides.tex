@@ -1,4 +1,5 @@
 \input{slides/header.tex}
+\input{common_header.tex}
 \title[Reproducible Self-Publishing via Python\TeX\ --- Introduction and Reference Slides]{Reproducible Self-Publishing via Python\TeX}
 \subtitle{Introduction and Reference Slides\\\href{https://github.com/TheChymera/RepSeP}{\small\texttt{[ github.com/TheChymera/RepSeP ]}}}
 \author[Horea Christian]{Horea Christian\\\href{https://twitter.com/TheChymera}{\small\texttt{[ @TheChymera ]}}}
@@ -69,11 +70,12 @@
 				\begin{table}[]
 					\vspace{0.4em}
 						\py{
-							pytex_tab('scripts/small_table.py',
+							pytex_tab('scripts/stim_table.py',
 								label='sp',
-								caption='Sucrose preference table.',
-								options_pre='\\tiny',
-								data='data/sucrosepreference.csv',
+								caption='BIDS event file table.',
+								options_pre='\\centering \\resizebox{0.5\\textwidth}{!}{',
+								data='data/JogB.tsv',
+								options_post='}',
 								)
 							}
 					\vspace{0.4em}
