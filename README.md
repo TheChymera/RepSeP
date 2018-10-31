@@ -15,6 +15,7 @@ As no binaries are tracked, publications built analogously to our examples are e
 
 ### Video Presentations
 
+* [Reproducible Self-Publishing for Python-Based Research](https://youtu.be/WbjQYBuyKdk), at EuroSciPy 2018 in Trento (IT)
 * [Reproducible Self-Publication via PythonTeX](https://www.youtube.com/watch?v=bu9_338Q7rU), at EuroSciPy 2017 in Erlangen (DE)
 * [Reproducible Self-Publishing](https://www.youtube.com/watch?v=8AD4mtXJhpE), at SciPy 2017 in Austin (TX,USA)
 
