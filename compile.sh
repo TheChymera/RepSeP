@@ -7,7 +7,7 @@ WHITELIST="
 	slides.tex
 	"
 
-if [ $TARGET = "all" ]; then
+if [ $TARGET = "all" ] || [ "$TARGET" == "" ]; then
 	for ITER_TARGET in *.tex; do
 		if [[ $WHITELIST =~ (^|[[:space:]])$ITER_TARGET($|[[:space:]]) ]];then
 			ITER_TARGET=${ITER_TARGET%".tex"}
