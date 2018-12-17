@@ -20,6 +20,6 @@ RDEPEND="
 	dev-python/pandas
 	>=dev-python/statsmodels-0.9.0
 	>=dev-tex/pythontex-0.16
-	dev-texlive/texlive-latex
+	app-text/texlive
 	media-gfx/graphviz
 	"
