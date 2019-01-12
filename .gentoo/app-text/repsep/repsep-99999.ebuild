@@ -19,7 +19,7 @@ RDEPEND="
 	dev-python/numpy
 	dev-python/pandas
 	dev-python/seaborn
-	>=dev-python/pygments-2.3.1
+	dev-python/pygments
 	>=dev-python/statsmodels-0.9.0
 	>=dev-tex/latex-beamer-3.41
 	>=dev-tex/pythontex-0.16
