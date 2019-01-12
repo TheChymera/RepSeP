@@ -18,7 +18,10 @@ RDEPEND="
 	dev-python/matplotlib
 	dev-python/numpy
 	dev-python/pandas
+	dev-python/seaborn
+	dev-python/pygments
 	>=dev-python/statsmodels-0.9.0
+	>=dev-tex/latex-beamer-3.41
 	>=dev-tex/pythontex-0.16
 	app-text/texlive
 	media-gfx/graphviz
