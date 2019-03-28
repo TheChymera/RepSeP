@@ -226,8 +226,9 @@ def latex_table(table,
 	Add caption and label to an inner tabular environment and than wrap in the outer LaTeX `'table'` environment.
 	"""
 	content = table
-	caption= "\\caption{%s\\label{%s:%s}}\n" % (caption, "tab", label)
-	options_post += caption
+	if caption:
+		caption= "\\caption{%s\\label{%s:%s}}\n" % (caption, "tab", label)
+		options_post += caption
 	return latex_environment("table",
 		content=content,
 		options_post=options_post,
