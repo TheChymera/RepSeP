@@ -35,7 +35,9 @@ def pytex_printonly(script, data=''):
 
 	return s.getvalue()
 
-def pytex_tab(script,
+def pytex_tab(
+	inner_tabular='',
+	script='',
 	caption='',
 	label='',
 	options_post='',
@@ -43,10 +45,9 @@ def pytex_tab(script,
 	data='',
 	):
 	"""
-	Print a LaTeX formatted table (including outer table environment and additional options), based on a script which returns an inner tabular environment and table structure.
+	Print a LaTeX formatted table (including outer table environment and additional options), based on a script which returns an inner tabular environment, or based on an inner tabular environment string.
 	Such scripts are best created using Pandas' `pd.to_latex()` function.
 	"""
-	pytex.add_dependencies(script)
 	import sys
 	try:
 		from StringIO import StringIO
@@ -66,10 +67,13 @@ def pytex_tab(script,
 		yield stdout
 		sys.stdout = old
 
-	with stdoutIO() as s:
-		exec(open(script).read(), locals())
+	if script and not inner_tabular:
+		pytex.add_dependencies(script)
+		with stdoutIO() as s:
+			exec(open(script).read(), locals())
+		inner_tabular = s.getvalue()
 
-	tab = latex_table(s.getvalue(),
+	tab = latex_table(inner_tabular,
 		caption=caption,
 		label=label,
 		options_post=options_post,
@@ -80,13 +84,20 @@ def pytex_tab(script,
 def pytex_subfigs(scripts,
 	caption='',
 	label='',
-	placement='[ht]',
-	main_environment='figure',
+	placement='[h]',
+	options_pre='',
+	options_post='',
+	data=[],
+	figure_format='pgf',
+	main_env='figure',
 	):
 	"""
 	Executes a series of Python scripts, grabbing the figures individually, and placing them as subfigures in a figure environment
 	"""
-	subfigs = '\\begin{{{}}}{}\n'.format(main_environment,placement)
+	pytex.add_dependencies(*data)
+	subfigs = '\\begin{{{}}}{}\n'.format(main_env,placement)
+	if options_pre:
+		subfigs += '{}\n'.format(options_pre)
 	for script in scripts:
 		try:
 			script_conf = script['conf']
@@ -108,6 +119,14 @@ def pytex_subfigs(scripts,
 			script_options_pre = script['options_pre']
 		except KeyError:
 			script_options_pre=''
+		try:
+			script_options_pre_caption = script['options_pre_caption']
+		except KeyError:
+			script_options_pre_caption = ''
+		try:
+			script_figure_format = script['figure_format']
+		except KeyError:
+			script_figure_format = figure_format
 		subfig = pytex_fig(script['script'],
 			conf=script_conf,
 			caption=script_caption,
@@ -115,12 +134,18 @@ def pytex_subfigs(scripts,
 			environment='subfigure',
 			options_post=script_options_post,
 			options_pre=script_options_pre,
+			options_pre_caption=script_options_pre_caption,
+			figure_format=script_figure_format,
 			)
 		subfigs += subfig
 		subfigs += '\\hfill\n'
-	subfigs += '\\caption{{{}}}\n'.format(caption)
-	subfigs += '\\label{{{}}}\n'.format(label)
-	subfigs += '\\end{{{}}}'.format(main_environment)
+	if caption:
+		subfigs += '\\caption{{{}}}\n'.format(caption)
+	if label:
+		subfigs += '\\label{{{}}}\n'.format(label)
+	if options_post:
+		subfigs += '{}\n'.format(options_post)
+	subfigs += '\\end{{{}}}'.format(main_env)
 	return subfigs
 
 def pytex_fig(script,
@@ -130,7 +155,10 @@ def pytex_fig(script,
 	multicol=False,
 	environment='figure',
 	options_post='',
-	options_pre='[htp]'
+	options_pre='[htp]',
+	options_pre_caption='',
+	data=[],
+	figure_format='pgf',
 	):
 	'''
 	Executes a Python script while applying the custom style.
@@ -155,17 +183,19 @@ def pytex_fig(script,
 	except NameError:
 		if isinstance(conf, str):
 			conf = [conf]
-	figure_styles = [document_style]+conf
+	figure_styles = [document_style]+conf+data
 	pytex.add_dependencies(*figure_styles)
 	with plt.style.context(figure_styles):
 		exec(open(script).read())
 	if multicol:
 		environment='figure*'
-	fig = latex_figure(save_fig(), environment,
+	fig = latex_figure(save_fig(ext='.{}'.format(figure_format)), environment,
 		caption=caption,
 		label=label,
 		options_post=options_post,
 		options_pre=options_pre,
+		options_pre_caption=options_pre_caption,
+		figure_format=figure_format,
 		)
 	return fig
 
@@ -192,7 +222,7 @@ def save_fig(name='', legend=False, fig=None, ext='.pgf'):
 		name = 'auto_fig_{}-{}'.format(pytex.id, fig_count)
 		fig_count += 1
 	else:
-		if len(name) > 4 and name[:-4] in ['.pgf', '.svg', '.png', '.jpg']:
+		if len(name) > 4 and name[:-4] in ['.pdf', '.pgf', '.svg', '.png', '.jpg']:
 			name, ext = name.rsplit('.', 1)
 
 	# Get current figure if figure isn't specified
@@ -239,7 +269,9 @@ def latex_figure(name, environment,
 	label='',
 	width=1,
 	options_post='',
+	options_pre_caption='',
 	options_pre='[htp]',
+	figure_format='pgf',
 	):
 	"""
 	Auto wrap `name` in a LaTeX figure environment.
@@ -248,12 +280,15 @@ def latex_figure(name, environment,
 	if not name:
 		name = save_fig()
 	content = '\\centering\n'
-	content += '\\makeatletter\\let\\input@path\\Ginput@path\\makeatother\n'
-	content += '\\input{%s.pgf}\n' % name
+	if figure_format == 'pgf':
+		content += '\\makeatletter\\let\\input@path\\Ginput@path\\makeatother\n'
+		content += '\\input{{{}.{}}}\n'.format(name, figure_format)
+	elif figure_format == 'pdf':
+		content += '\\includegraphics{{{}}}\n'.format(name)
+	if options_pre_caption:
+		content+= '{}\n'.format(options_pre_caption)
 	if not label:
 		label = name
-	if caption and not caption.rstrip().endswith('.'):
-		caption += '.'
 	if caption:
 		# `\label` needs to be in `\caption` to avoid issues in some cases
 		content += "\\caption{%s\\label{%s:%s}}\n" % (caption, fig_label_prefix, label)
@@ -263,33 +298,6 @@ def latex_figure(name, environment,
 		options_post=options_post,
 		)
 
-pytex.bio_fignum = 0
-#global pytex # try without this line
-def bio_fig(gdd, fname=None, caption=None, label=None):
-#		global pytex # and this one, should work
-	if fname is None:
-		fname = 'pythontex-files-pres/biopython_fig_{0}-{1}.pdf'.format(pytex.id, pytex.bio_fignum)
-	gdd.write(fname, "PDF")
-	template = '''
-	\\begin{{figure}}
-	\\centering
-	\\includegraphics{{{fname}}}
-	\\caption{{ {label} {caption} }}
-	\\end{{figure}}
-	'''
-	if caption is None:
-		caption = ''
-	if label is None:
-		label = ''
-	else:
-		if not label.startswith('fig:'):
-			label = 'fig:' + label
-		label = '\\label{{{0}}}'.format(label)
-	template = template.format(fname=fname.rsplit('.', 1)[0], label=label, caption=caption)
-	print(template)
-	pytex.add_created(fname)
-	pytex.bio_fignum += 1
-	return template
 \end{pythontexcustomcode}
 \begin{pythontexcustomcode}[end]{py}
 \end{pythontexcustomcode}
