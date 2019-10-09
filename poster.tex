@@ -1,15 +1,19 @@
-\documentclass{beamer}
+\documentclass[xcolor=table]{beamer}
 \usepackage[orientation=portrait,size=a0]{beamerposter}
 \mode<presentation>{\usetheme{ZH}}
-% \usepackage{chemformula}
+\usepackage{cleveref}
 \usepackage[utf8]{inputenc}
 \usepackage{multicol}
+\usepackage{makecell}
+\usepackage{subcaption}
 % \usepackage[german, english]{babel} % required for rendering German special characters
 \usepackage{siunitx} %pretty measurement unit rendering
 \usepackage[autoprint=false, gobble=auto, pyfuture=all]{pythontex} % create figures on-line directly from python!
 \usepackage{hyperref} %enable hyperlink for urls
 \usepackage{ragged2e}
-\usepackage[font=scriptsize,justification=justified]{caption}
+\usepackage{graphviz}
+\usepackage{verbatimbox}
+\usepackage[font=small,justification=justified]{caption}
 
 % \sisetup{per=frac,fraction=sfrac}
 \sisetup{per-mode=symbol}
@@ -17,15 +21,22 @@
 \input{pythontex/functions.py}
 \begin{pythontexcustomcode}[begin]{py}
 DOC_STYLE = 'poster/main.conf'
-pytex.add_dependencies(DOC_STYLE, 'poster/wide.conf', 'poster/3dplot.conf')
+pytex.add_dependencies(
+	DOC_STYLE,
+	'poster/wide.conf',
+	'poster/3dplot.conf',
+	'poster/1col.conf',
+	)
 \end{pythontexcustomcode}
 
-\usepackage{array,booktabs,tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
 \newcolumntype{Z}{>{\centering\arraybackslash}X} % centered tabularx columns
 
-\title{Python\TeX Minimal Demo using a Poster Template}
+\title{\href{https://github.com/TheChymera/RepSeP}{\Large github.com/TheChymera/RepSeP}\\\vspace{.15em}Reproducible Publishing --- Reference Poster Implementation}
 % \title{Longitudinal opto-pharmaco-fMRI of Selective\\ Serotonin Reuptake Inhibition}
-\author{Horea-Ioan Ioanas$^{1}$}
+\author{Horea-Ioan Ioanas$^{1}$, Markus Rudin$^{1}$}
 \institute[ETH]{$^{1}$Institute for Biomedical Engineering, ETH and University of Zurich}
 \date{\today}
 
@@ -33,79 +44,90 @@ pytex.add_dependencies(DOC_STYLE, 'poster/wide.conf', 'poster/3dplot.conf')
 \setlength{\columnheight}{0.881\textheight}
 
 \begin{document}
+
+\begin{myverbbox}[\small]{\tabcode}
+\begin{table}[]
+      \py{
+            pytex_tab(
+                  script='scripts/stim_table.py', label='sp',
+                  caption='BIDS \cite{bids} event file table, from \cite{irsabi}',
+                  options_pre='\\centering \\resizebox{0.9\\textwidth}{!}{',
+                  data='data/JogB.tsv', options_post='}',
+                  )
+          }
+\end{table}
+\end{myverbbox}
+\begin{myverbbox}[\small]{\spcode}
+\py{pytex_fig(
+        'scripts/3dplot.py',
+        conf='poster/3dplot.conf', label='3dplot',
+        caption='A 3D plot. Plot script from matplotlib exampes \cite{matplotlib}.',
+        )}
+\end{myverbbox}
+
 \begin{frame}
 \begin{columns}
 	\begin{column}{.43\textwidth}
 		\begin{beamercolorbox}[center]{postercolumn}
 			\begin{minipage}{.98\textwidth}  % tweaks the width, makes a new \textwidth
 				\parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
-					\begin{myblock}{Background}
-						Background may go here, and is best kept short.
-						Here we create some action via a few lines of provide some Lipsum text.
-
-						\vspace{0.8em}
-
-						Quas interesset sea no, vidisse utroque constituto usu te.
-						Solum postea bonorum cu vim, cum bonorum alienum adolescens cu. 
-						An duo recteque referrentur, etiam ceteros usu cu.
-						Atqui postea intellegat in sea, solet regione gloriatur ea quo.
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Proin malesuada magna ut elit fringilla, eu pretium diam suscipit. Ut id sollicitudin velit.
+					\begin{myblock}{Abstract}
+						\input{poster/abstract.tex}
 					\end{myblock}\vfill
 					\vspace{-0.3em}
-					\begin{myblock}{Animals and Timetables}
-						Lorem ipsum dolor sit amet, ei eos dico illum.
-						Te persius appellantur vis, no sonet mentitum vix.
-						At alterum fierent qui.
-						Duo eu graeco scripta noluisse, fugit solet ocurreret ius ex, quaerendum dissentiunt nam ne.
+					\begin{myblock}{Dependency Management}
+						\begin{figure}
+							\captionsetup{width=.9\linewidth}
+							\vspace{-1.2em}
+							\includedot[width=0.9\textwidth]{data/dependencies}
+							\vspace{-1.8em}
+							\caption{
+								Small excerpt and conceptual representation of software dependencies for research articles doing even only simple neuroimaging analysis.
+								First-level dependencies are highlighted in green.
+							}
+							\vspace{1em}
+						\end{figure}
 
-						Usu ne soluta accumsan, alia lorem oporteat ei eum.
-						Mea cu labitur dissentias, no has ignota aperiri.
-						Sea ad voluptua vituperatoribus, pri legere eligendi ea, mollis ancillae disputationi nam te. Ne vim soluta propriae.
-						Nulla civibus percipit at mei. Omnes altera eu mel, cu vivendo accusata usu.
+						Explicit, unambiguous declaration (e.g. conforming to the Package Manager Specification \cite{pms}) of first-level dependencies is vital for software environment reproducibility.
+						Given such a specification, an effective package manager can automatically resolve all downstream steps (typically extending into the hundreds or thousands of packages) \cite{ng}.
 
-						Errem congue apeirian nec ne, pro animal dolorem iudicabit at.
-						Cu quo dico insolens, cu ius nobis neglegentur.
-						Ea dicit timeam lucilius quo. Dico solum graeci eos ad, omnesque phaedrum appellantur mel eu, mei id consul scaevola.
-						Perfecto accusata et vim, sed no illum liber oblique.
-
-						\vspace{0.6em}
-						Longitudinal designs implemented varying SSRI (fluoxetine) administration routes:
-						\begin{itemize}
-							\item Intravenous (i.v.) at \SI{10}{\mg\per\kg} daily (in cohorts from).
-							\item Intraperitoneal (i.p.) at \SI{10}{\mg\per\kg} daily (cohort timetable shown in).
-							\item Drinking water (d.w.) at \SI{\approx 20}{\milli\gram\per\kilo\gram} per day (one cohort timetable shown in figure).
-						\end{itemize}
-
-						\vspace{0.5em}
-						\py{pytex_fig('scripts/radar.py', label='radar', caption='A radar plot.')}
-						\vspace{-1em}
 					\end{myblock}\vfill
 					\vspace{-0.3em}
-					\begin{myblock}{Behaviour}
-						Usu ne soluta accumsan, alia lorem oporteat ei eum.
-						Mea cu labitur dissentias, no has ignota aperiri.
-						Sea ad voluptua vituperatoribus, pri legere eligendi ea, mollis ancillae disputationi nam te. Ne vim soluta propriae.
-						Usu ne soluta accumsan, alia lorem oporteat ei eum.
-						Mea cu labitur dissentias, no has ignota aperiri.
-						Sea ad voluptua vituperatoribus, pri legere eligendi ea, mollis ancillae disputationi nam te. Ne vim soluta propriae.
-						Nulla civibus percipit at mei. Omnes altera eu mel, cu vivendo accusata usu.
-					
-						Behavioural measurements can help stratify subjects and identify correlated fMRI activation patterns.
-						Forced swim test results from the optogenetic responder cohort (figure) spread over half the measurement range, and would thus be suitable to regress fMRI variance.
-						Results from all binned cohorts (figure) show a trend indicating that fluoxetine treatment may induce additional behaviour variance in healthy C57BL/6 mice undergoing longitudinal fMRI.
-						
+					\begin{myblock}{Technologies}
+						\vspace{0.75em}
+						\begin{minipage}{.28\textwidth}
+							\begin{figure}
+								\includegraphics[width=0.9\textwidth]{img/pythontex}
+							\end{figure}
+						\end{minipage}~
+						\begin{minipage}{.68\textwidth}
+							Arbitrarily complex plots leveraging the full capacity of matplotlib \cite{matplotlib}, higher-level packages building on it, or other Python plotting packages, are generated live on document compilation.
+							\vspace{0.6em}
+
+							The core technology of this infrastructure is provided by Python\TeX{} \cite{pytex}, which comes complete with \textit{codeblock} dependency tracking (n.b. not to be confused with dependency management for the software itself).
+							All figures are generated on the initial execution of a \LaTeX{} compile script, and subsequently regenerated when either code, data, or styling dependencies are changed.
+						\end{minipage}
+					\end{myblock}\vfill
+					\vspace{-0.3em}
+					\begin{myblock}{3D Plots}
 						\vspace{0.6em}
-						\py{pytex_fig('scripts/3dplot.py', conf='poster/3dplot.conf', label='3dplot', caption='A 3D plot.')}
-						\vspace{-1em}
+						\py{pytex_fig(
+							'scripts/3dplot.py',
+							conf='poster/3dplot.conf', label='3dplot', caption='A 3D plot, from the matplotlib exampes \cite{matplotlib}.',
+							)}
+						\vspace{1.5em}
+						The above image is dynamically generated on document compilation by inserting the following code in the \TeX{} document source:
+						\vspace{.5em}
+                       		                \begin{figure}
+                                                        \fcolorbox{tlg}{elg}{\spcode}
+                                                \end{figure}
 					\end{myblock}\vfill
 					\vspace{-0.3em}
 					\begin{myblock}{Outlook}
 						\begin{itemize}
-							\item More constrained region of interest analysis.
-							\item Control group analysis to test for underlying (signal decay) trends.
-							\item Population stratification according to forced swim and open field test scores.
-							\item DR SNR improvement and true functional connectivity tracking.
+						        \item We are looking for \textbf{testers}, to apply this reference implementation to their own work (we have used it to great satisfaction in numerous articles, including \cite{irsabi}).
+							\item We are looking for potential \textbf{co-authors} for the reference article implementation, which is to be submitted to an academic journal.
+							\item We are looking for potential \textbf{web developers} or \textbf{co-founders} to launch a platform offering RepSeP-based publishing services (yes, a journal of reproducible code-based articles!).
 						\end{itemize}
 					\end{myblock}\vfill
 		}\end{minipage}\end{beamercolorbox}
@@ -114,67 +136,117 @@ pytex.add_dependencies(DOC_STYLE, 'poster/wide.conf', 'poster/3dplot.conf')
 		\begin{beamercolorbox}[center]{postercolumn}
 			\begin{minipage}{.98\textwidth} % tweaks the width, makes a new \textwidth
 				\parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
-					\begin{myblock}{MRI Methods}
+					\begin{myblock}{Why do we need this?}
 						\vspace{0.5em}
 						\begin{center}
-							\begin{minipage}{.37\textwidth}
-							Data Acquisition:
+							\begin{minipage}{.47\textwidth}
+							Why do we need code-based publishing?
 								\begin{itemize}
-									\item Bruker PharmaScan (\SI{7}{\tesla}, \SI{16}{\centi\metre} bore)
-									\item Implant-compatible in-house T/R coil
-									\item Gradient-echo EPI:
-										\begin{itemize}
-											\item TR=\SI{1000}{\ms}, TE=\SI{5}{\ms}, FA=\SI{60}{\degree}
-											\item x($\phi$)=\SI{312.5}{\um}, y($\nu$)=\SI{281.25}{\um}, z(slice)=\SI{500}{\um}
-										\end{itemize}
-									\item Endorem (Laboratoire Guebet SA)
+									\item Transparency $\longrightarrow$ verifiability
+									\item Reproducibility $\longrightarrow$ hackability, reusability
+									\item Version management $\longrightarrow$ sustainability
 								\end{itemize}
 							\end{minipage}
-							\begin{minipage}{.26\textwidth}
-								Anesthesia Protocol:
+							\begin{minipage}{.48\textwidth}
+							Why do we need distributed publishing?
 								\begin{itemize}
-									\item Free breathing, 1:4 O$_2$/air
-									\item Bolus:
-										\begin{itemize}
-											\item \SI{0.05}{\mg\per\kg} Medetomidine
-											\item \SI{1.5}{\percent} Isoflurane
-										\end{itemize}
-									\item Maintenance:
-										\begin{itemize}
-											\item \SI{0.1}{\mg\per\kg\per\hour} Medetomidine
-											\item \SI{0.5}{\percent} Isoflurane
-										\end{itemize}
-								\end{itemize}
-							\end{minipage}
-							\begin{minipage}{.32\textwidth}
-								Data Analysis:
-								\begin{itemize}
-									\item SAMRI (\href{https://github.com/IBT-FMI/SAMRI}{github.com/IBT-FMI/SAMRI}), internally using:
-										\begin{multicols}{3}
-											\begin{itemize}
-												\item AFNI
-												\item ANTs
-												\item Bru2Nii
-												\item FSL
-												\item Matplotlib
-												\item Nibabel
-												\item Nilearn
-												\item Nipy
-												\item Nipype
-												\item Pandas
-												\item Seaborn
-												\item Statsmodels
-											\end{itemize}
-										\end{multicols}
+									\item No external entry barrier $\longrightarrow$ citizen science
+									\item No institutional bias $\longrightarrow$ free science
+									\item \textit{Less} publication bias $\longrightarrow$ honest science
 								\end{itemize}
 							\end{minipage}
 						\end{center}
 					\end{myblock}\vfill
-					\begin{myblock}{opto-fMRI}
+					\begin{myblock}{Split Violin Plots}
 						\vspace{0.3em}
-						\py{pytex_fig('scripts/bsc_percentage.py', conf='poster/wide.conf', label='bsc_percentage', caption='Percentage of Bachelor’s degrees conferred to women in the U.S.A. by major (1970-2011)')}
+		                                \py{pytex_subfigs(
+                                        		[
+								{'script':'scripts/vc_violin.py',
+									'label':'vcv',
+									'conf':'poster/1col.conf',
+									'options_pre':'{.48\\textwidth}',
+									},
+                                                		{'script':'scripts/vcc_violin.py',
+									'label':'vccv',
+									'conf':'poster/1col.conf',
+									'options_pre':'{.48\\textwidth}',
+									},
+								],
+                                        		options_pre='\captionsetup{width=.9\linewidth}',
+							caption='
+								Violin plots highlighting both the distribution densities and quartiles in a multifactorial comparison (from \cite{irsabi}).
+								The style is adapted in the source code of this document to improve quartile styling in excess of the capabilities offered by the upstream package, seaborn \cite{seaborn}.
+								',
+							label='fig:vc',
+							)}
 						\vspace{0.9em}
-			
+						Custom plotting options can also be used, by distributing customization code inside the article source.
+						For \cref{fig:vc}, a patched module from the original code is distributed in \colorbox{elg}{\texttt{lib/categorical.py}}, and preferentially imported in the script files (e.g. \colorbox{elg}{\texttt{scripts/violin.py}}).
+					\end{myblock}\vfill
+					\begin{myblock}{Statistics and Tables}
+						\vspace{0.3em}
+						\begin{minipage}{.51\textwidth}
+							Automatically computed and formatted inline statistics:
+							\begin{itemize}
+								\item \py{pytex_printonly('scripts/anova.py')}
+								\item Processing Factor: \py{boilerplate.fstatistic('Processing', condensed=True)}
+								\item Template Factor: \py{boilerplate.fstatistic('Template', condensed=True)}
+								\item Processing:Template Intearction: \py{boilerplate.fstatistic('Processing:Template', condensed=True)}
+							\end{itemize}
+						\end{minipage}
+						\begin{minipage}{.46\textwidth}
+							\begin{table}[]
+								\vspace{0.4em}
+									\py{
+										pytex_tab(
+											script='scripts/stim_table.py',
+											label='sp',
+											caption='BIDS \cite{bids} event file table, from \cite{irsabi}',
+											options_pre='\\centering \\resizebox{0.9\\textwidth}{!}{',
+											data='data/JogB.tsv',
+											options_post='}',
+											)
+										}
+								\vspace{0.4em}
+							\end{table}
+						\end{minipage}
+						\vspace{-1em}
+
+						Text elements can also be auto-generated from code and data, allowing inline statistics to be dynamic.
+						Such elements can be based on single scripts (e.g. \colorbox{elg}{\texttt{\textbackslash py\{pytex\_printonly('scripts/anova.py')\}}}), or parameterized script calls (e.g. \colorbox{elg}{\texttt{\textbackslash py\{boilerplate.fstatistic('Processing', condensed=True)\}}}), allowing the same model to be used and different factors to be reported in different locations.
+						\vspace{.7em}
+
+						\begin{minipage}{.7\textwidth}
+							\begin{figure}
+								\fcolorbox{tlg}{elg}{\tabcode}
+							\end{figure}
+						\end{minipage}\hfill
+						\begin{minipage}{.25\textwidth}
+							Additionally, scripts such as the one invoked in the code block to the left allow tab or comma separated value files to be automatically read and typeset as \LaTeX{} tables.
+						\end{minipage}
+					\end{myblock}\vfill
+					\begin{myblock}{Manual Anchors}
+						\vspace{0.3em}
+						\py{pytex_fig(
+							'scripts/bsc_percentage.py', conf='poster/wide.conf', label='bsc_percentage',
+							caption='
+								Percentage of Bachelor’s degrees conferred to women in the U.S.A. by major (1970-2011).
+								Plot script from matplotlib exampes \cite{matplotlib}.
+								',
+							)}
+						\vspace{0.9em}
+						The style application via hierarchical matplotlib configuration files (global, per-document, per-script --- in ascending order of priority) allows the selfsame script results to be adapted to individual document types.
+						Multiple views of the same data analysis summary (e.g. a plot) can thus rely on the same code, avoiding divergent editing.
+						Even sensitive plot elements, such as anchors, remain stable throughout various style applications, as exemplified here.
+					\end{myblock}\vfill
+					\begin{myblock}{References}
+                                                \vspace{-0.8em}
+                                                \begin{multicols}{2}
+                                                        \scriptsize
+							\bibliographystyle{IEEEtran}
+                                                        \bibliography{./bib}
+                                                \end{multicols}
+                                                \vspace{-0.8em}
 					\end{myblock}\vfill
 		}\end{minipage}\end{beamercolorbox}
 	\end{column}

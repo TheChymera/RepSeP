@@ -26,7 +26,7 @@ ax = violinplot(
 	palette=palette,
 	scale='area',
 	dodge=False,
-	inner_linewidth=1.0,
+	#inner_linewidth=1.0,
 	linewidth=mpl.rcParams['grid.linewidth'],
 	linecolor='w',
 	)
