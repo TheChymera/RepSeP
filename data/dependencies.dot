@@ -1,0 +1,51 @@
+digraph graphname {
+    size="10,26";
+    rankdir="TB";
+    graph [fontname = "sans"];
+    node [fontname ="sans", fillcolor=grey93, style=filled, color="#BBBBBB", shape=box];
+    edge [fontname ="sans", color=gray50];
+    o[label="RepSeP\n Document", fillcolor=grey93, fontcolor="#00a3cc", color="#00a3cc"];
+    a1[label="PythonTeX", fillcolor=grey93, color="#45B000"];
+    a2[label="statsmodels", fillcolor=grey93, color="#45B000"];
+    a3[label="SAMRI", fillcolor=grey93, color="#45B000"];
+    b[label="Nipype", fillcolor=grey93];
+    c[label="FSL", fillcolor=grey93];
+    d[label="ANTs", fillcolor=grey93];
+    e[label="pandas", fillcolor=grey93];
+    f[label="SciPy", fillcolor=grey93];
+    g[label="pygraphviz", fillcolor=grey93];
+    h[label="graphviz", fillcolor=grey93];
+    i[label="CBLAS", fillcolor=grey93];
+    j[label="LAPACK"];
+    0[label="..."];
+    1[label="..."];
+    2[label="..."];
+    3[label="..."];
+    4[label="..."];
+    5[label="..."];
+    6[label="..."];
+    7[label="..."];
+    8[label="..."];
+
+    o -> a1 [color="#00a3cc"];
+    o -> a2 [color="#00a3cc"];
+    o -> a3 [color="#00a3cc"];
+    a2 -> e;
+    a3 -> {b; c; d; f};
+    b -> {f; g;};
+    g -> {h;};
+    c -> {g;};
+    f -> {i; j};
+    d -> 3;
+    3 -> {4; 5};
+    e -> f;
+    a1 -> 0;
+    0 -> {1; 2};
+    e -> 6;
+    6 -> 7;
+    1 -> 8;
+
+    {rank=same; a1; a2; a3; }
+    {rank=same; b; c; d; e;}
+    {rank=same; f; g;}
+}

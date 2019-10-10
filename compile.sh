@@ -2,6 +2,7 @@
 
 TARGET="${1}"
 WHITELIST="
+	pitch.tex
 	article.tex
 	poster.tex
 	slides.tex

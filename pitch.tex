@@ -1,0 +1,205 @@
+\input{slides/header.tex}
+\input{common_header.tex}
+\title[Reproducible Self-Publishing via Python\TeX\ --- Pitch and Reference Slides]{Reproducible Self-Publishing via Python\TeX}
+\subtitle{Pitch and Reference Slides\\\href{https://github.com/TheChymera/RepSeP}{\small\texttt{[ github.com/TheChymera/RepSeP ]}}}
+\author[Horea Christian]{Horea Christian\\\href{https://twitter.com/TheChymera}{\small\texttt{[ @TheChymera ]}}}
+\institute{Institute for Biomedical Engineering, ETH and University of Zürich}
+\begin{document}
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	\section{Publishing}
+		\subsection{Free and Open Scientific Publishing}
+			\begin{frame}{Publish From Code, Openly.}
+				\begin{itemize}
+					\item Transparency $\longrightarrow$ verifiability
+					\item Reproducibility $\longrightarrow$ hackability, reusability
+					\item Version management $\longrightarrow$ sustainability, attribution, e.g. via:
+					\begin{itemize}
+						\item \colorbox{tlg}{\texttt{diff}}-ability
+						\item \colorbox{tlg}{\texttt{blame}}-ability
+					\end{itemize}
+				\end{itemize}
+			\end{frame}
+			\begin{frame}{Publish in a Distributed Model, Free.}
+				\begin{itemize}
+					\item No external entry barrier $\longrightarrow$ citizen science
+					\item No institutional bias $\longrightarrow$ free science
+					\item \textit{Less} publication bias $\longrightarrow$ honest science
+				\end{itemize}
+			\end{frame}
+	\section{Technologies}
+		\subsection{The tools which make this format amazing.}
+			\begin{frame}{Publish, in a Presentable Format.}
+				\noindent\makebox[\textwidth][c]{%
+					\begin{minipage}{.35\textwidth}
+						\begin{itemize}
+							\item Article
+							\item Poster
+							\item Slides
+						\end{itemize}
+					\end{minipage}
+					\begin{minipage}{.35\textwidth}
+						\begin{figure}
+							\centering
+							\includegraphics[width=0.6\textwidth]{img/pythontex.pdf}
+						\end{figure}
+					\end{minipage}
+				}\vspace{3em}
+				\centering (“Notebooks” integrate poorly with both presentation and development.)
+			\end{frame}
+			\begin{frame}{Manage Dependencies for Reliable Reexecution}
+				\begin{minipage}{.07\textwidth}~\end{minipage}%
+				\begin{minipage}{.25\textwidth}
+					\begin{figure}
+						\includegraphics[width=0.99\textwidth]{img/gentoo.png}
+					\end{figure}
+				\end{minipage}
+				\begin{minipage}{.65\textwidth}
+					\begin{figure}
+						\captionsetup{width=.9\linewidth}
+						\vspace{-1.2em}
+						\includedot[width=0.8\textwidth]{data/dependencies}
+						\vspace{-1.8em}
+						\vspace{1em}
+					\end{figure}
+				\end{minipage}
+				\vspace{1em}
+
+				\begin{centering}
+				Automated dependency management via Gentoo Linux
+				\begin{itemize}
+					\item Because dependency graphs should never be managed ad hoc.
+				\end{itemize}
+				\end{centering}
+			\end{frame}
+	\section{Features}
+		\subsection{Create All Graphic Elements Directly from Source.}
+			\begin{frame}[fragile]{}
+				\begin{minipage}{.56\textwidth}
+					\py{pytex_fig('scripts/3dplot.py',
+						conf='slides/3dplot.conf',
+						label='3dplot', caption='A 3D plot.',
+						)}
+				\end{minipage}
+				\begin{minipage}{.42\textwidth}
+					\centering
+					\vspace{10em}
+					\textcolor{lg}{Produced by including:}
+					\begin{pyverbatim}
+						\py{
+							pytex_fig('scripts/radar.py',
+								label='radar',
+								caption='A radar plot.',
+								)
+							}
+					\end{pyverbatim}
+				\end{minipage}
+			\end{frame}
+			\begin{frame}{}
+				\setlength\abovecaptionskip{-5pt}
+				\py{pytex_fig('scripts/bsc_percentage.py', conf='slides/tall.conf', label='bsc_percentage', caption='Percentage of Bachelor’s degrees conferred to women in the U.S.A. by major (1970-2011).')}
+			\end{frame}
+			\begin{frame}{And So Much More}
+				\py{pytex_subfigs(
+					[
+						{'script':'scripts/vc_violin.py', 'label':'vcv', 'conf':'slides/1col.conf', 'options_pre':'{.48\\textwidth}',
+						},
+						{'script':'scripts/vcc_violin.py', 'label':'vccv','conf':'slides/1col.conf', 'options_pre':'{.48\\textwidth}',
+						},
+						],
+					label='fig:vc',)}
+			\end{frame}
+			\begin{frame}[fragile]{}
+				\begin{minipage}{0.46\textwidth}
+					\begin{table}[]
+						\vspace{0.4em}
+							\py{
+								pytex_tab(
+									script='scripts/stim_table.py',
+									label='sp',
+									caption='BIDS event file table.',
+									options_pre='\\centering \\resizebox{0.98\\textwidth}{!}{',
+									data='data/JogB.tsv',
+									options_post='}',
+									)
+								}
+						\vspace{0.4em}
+					\end{table}
+				\end{minipage}
+				\begin{minipage}{0.532\textwidth}
+					\centering
+					\vspace{2em}
+					\textcolor{lg}{Produced by including:}
+					\begin{pyverbatim}
+						\py{
+							pytex_tab('scripts/small_table.py',
+								script='scripts/stim_table.py',
+								label='sp',
+								caption='BIDS event file table.',
+								data='data/JogB.tsv',
+								options_post='}',
+								)
+							}
+					\end{pyverbatim}
+				\end{minipage}
+			\end{frame}
+			\begin{frame}[fragile]{Sometimes Less is More}
+				\centering
+				\py{pytex_printonly('scripts/anova.py')}
+				\vspace{3em}
+
+				\textcolor{lg}{Produced by including:}
+				\vspace{1.5em}
+
+				\begin{minipage}{0.07\textwidth}~\end{minipage}
+				\begin{minipage}{0.5\textwidth}
+					\begin{pyverbatim}
+						\py{
+							pytex_printonly('scripts/drs_activityANOVA.py')
+							}
+					\end{pyverbatim}
+				\end{minipage}
+			\end{frame}
+			\begin{frame}[fragile]{But Sometimes You Just Want More}
+				\centering
+				\begin{itemize}
+					\item Processing Factor: \py{boilerplate.fstatistic('Processing', condensed=True)}
+					\item Template Factor: \py{boilerplate.fstatistic('Template', condensed=True)}
+					\item Processing:Template Intearction: \py{boilerplate.fstatistic('Processing:Template', condensed=True)}
+				\end{itemize}
+				\vspace{2em}
+
+				\textcolor{lg}{Produced by including, e.g.:}
+				\vspace{1em}
+
+				\begin{minipage}{0.07\textwidth}~\end{minipage}
+				\begin{minipage}{0.5\textwidth}
+					\begin{pyverbatim}
+						\py{
+							boilerplate.fstatistic('Processing:Template', condensed=True)
+							}
+					\end{pyverbatim}
+				\end{minipage}
+			\end{frame}
+	\section{You}
+		\subsection{How You Can Benefit from This Right Now.}
+			\begin{frame}{Help Test the Format}
+				\begin{itemize}
+					\item Get help harnessing the power of reproducible documents for your own work.
+					\item Already tested for three neuroimaging research articles --- but does it work for you?
+				\end{itemize}
+			\end{frame}
+			\begin{frame}{Co-Author the Reference Implementation}
+				\begin{itemize}
+					\item The \colorbox{tlg}{\texttt{article.tex}} reference document is still in early draft.
+					\item You can contribute, fork, and publish it together with us.
+				\end{itemize}
+			\end{frame}
+			\begin{frame}{Co-Found a Valuable Service for the Modern Research Environment}
+				\begin{itemize}
+					\item Powerful technologies should be provided as services.
+					\item Discuss and join a publishing platform in its early stages.
+				\end{itemize}
+			\end{frame}
+\end{document}
