@@ -286,7 +286,7 @@ def latex_figure(name, environment,
 	elif figure_format == 'pdf':
 		content += '\\includegraphics{{{}}}\n'.format(name)
 	if options_pre_caption:
-		content+= '{}\n'.format(options_pre_caption)
+		content += '{}\n'.format(options_pre_caption)
 	if not label:
 		label = name
 	if caption:
