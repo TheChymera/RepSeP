@@ -64,7 +64,9 @@
 						{'script':'scripts/vcc_violin.py', 'label':'vccv','conf':'slides/1col.conf', 'options_pre':'{.48\\textwidth}',
 						},
 						],
-					label='fig:vc',)}
+					environment='figure',
+					label='fig:vc',
+					)}
 			\end{frame}
 			\begin{frame}{}
 				\begin{table}[]
@@ -112,11 +114,13 @@
 				\begin{minipage}{0.5\textwidth}
 					\begin{pyverbatim}
 						\py{
-							pytex_tab('scripts/small_table.py',
+							pytex_tab(
+								script='scripts/stim_table.py',
 								label='sp',
-								caption='Sucrose preference table.',
-								options_pre='\\tiny',
-								data='data/sucrosepreference.csv',
+								caption='BIDS event file table.',
+								options_pre='\\centering \\resizebox{0.5\\textwidth}{!}{',
+								data='data/JogB.tsv',
+								options_post='}',
 								)
 							}
 					\end{pyverbatim}

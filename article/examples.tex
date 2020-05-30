@@ -1,5 +1,3 @@
-
-
 \py{pytex_fig('scripts/3dplot.py', conf='slides/3dplot.conf', label='3dplot', caption='A 3D plot.')}
 \py{pytex_fig('scripts/bsc_percentage.py', conf='slides/tall.conf', label='bsc_percentage', caption='Percentage of Bachelor’s degrees conferred to women in the U.S.A. by major (1970-2011).')}
 \py{pytex_subfigs(
@@ -9,23 +7,25 @@
 		{'script':'scripts/vcc_violin.py', 'label':'vccv','conf':'slides/1col.conf', 'options_pre':'{.48\\textwidth}',
 		},
 		],
-	label='fig:vc',)}
-\begin{table}[]
-	\vspace{0.4em}
-		\py{
-			pytex_tab('scripts/small_table.py',
-				label='sp',
-				caption='Sucrose preference table.',
-				options_pre='\\tiny',
-				data='data/sucrosepreference.csv',
-				)
-			}
-	\vspace{0.4em}
-\end{table}
+	label='fig:vc',
+	)}
+
+\vspace{0.4em}
+	\py{
+		pytex_tab(
+			script='scripts/stim_table.py',
+			label='sp',
+			caption='BIDS event file table.',
+			data='data/JogB.tsv',
+			options_pre='\\centering \\resizebox{0.5\\textwidth}{!}{',
+			options_post='}',
+			)
+		}
+\vspace{0.4em}
+
 \centerline{\py{pytex_printonly('scripts/anova.py')}}
 \begin{itemize}
 	\item Processing Factor: \py{boilerplate.fstatistic('Processing', condensed=True)}
 	\item Template Factor: \py{boilerplate.fstatistic('Template', condensed=True)}
 	\item Processing:Template Intearction: \py{boilerplate.fstatistic('Processing:Template', condensed=True)}
 \end{itemize}
-
