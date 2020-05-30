@@ -18,16 +18,16 @@
 % \sisetup{per=frac,fraction=sfrac}
 \sisetup{per-mode=symbol}
 
-\input{pythontex/functions.py}
 \begin{pythontexcustomcode}[begin]{py}
 DOC_STYLE = 'poster/main.conf'
 pytex.add_dependencies(
-	DOC_STYLE,
-	'poster/wide.conf',
-	'poster/3dplot.conf',
-	'poster/1col.conf',
-	)
+      DOC_STYLE,
+      'poster/wide.conf',
+      'poster/3dplot.conf',
+      'poster/1col.conf',
+      )
 \end{pythontexcustomcode}
+\input{common_header.tex}
 
 \usepackage{array}
 \usepackage{booktabs}
@@ -67,7 +67,7 @@ pytex.add_dependencies(
 
 \begin{frame}
 \begin{columns}
-	\begin{column}{.43\textwidth}
+	\begin{column}{.42\textwidth}
 		\begin{beamercolorbox}[center]{postercolumn}
 			\begin{minipage}{.98\textwidth}  % tweaks the width, makes a new \textwidth
 				\parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
@@ -132,7 +132,7 @@ pytex.add_dependencies(
 					\end{myblock}\vfill
 		}\end{minipage}\end{beamercolorbox}
 	\end{column}
-	\begin{column}{.57\textwidth}
+	\begin{column}{.59\textwidth}
 		\begin{beamercolorbox}[center]{postercolumn}
 			\begin{minipage}{.98\textwidth} % tweaks the width, makes a new \textwidth
 				\parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
@@ -158,28 +158,29 @@ pytex.add_dependencies(
 						\end{center}
 					\end{myblock}\vfill
 					\begin{myblock}{Split Violin Plots}
-						\vspace{0.3em}
-		                                \py{pytex_subfigs(
-                                        		[
+						\vspace{0.1em}
+						\py{pytex_subfigs(
+							[
 								{'script':'scripts/vc_violin.py',
 									'label':'vcv',
 									'conf':'poster/1col.conf',
 									'options_pre':'{.48\\textwidth}',
 									},
-                                                		{'script':'scripts/vcc_violin.py',
+						      {'script':'scripts/vcc_violin.py',
 									'label':'vccv',
 									'conf':'poster/1col.conf',
 									'options_pre':'{.48\\textwidth}',
 									},
 								],
-                                        		options_pre='\captionsetup{width=.9\linewidth}',
+							environment='figure',
+							options_pre='\captionsetup{width=.9\linewidth}',
 							caption='
 								Violin plots highlighting both the distribution densities and quartiles in a multifactorial comparison (from \cite{irsabi}).
 								The style is adapted in the source code of this document to improve quartile styling in excess of the capabilities offered by the upstream package, seaborn \cite{seaborn}.
 								',
 							label='fig:vc',
 							)}
-						\vspace{0.9em}
+						\vspace{0.5em}
 						Custom plotting options can also be used, by distributing customization code inside the article source.
 						For \cref{fig:vc}, a patched module from the original code is distributed in \colorbox{elg}{\texttt{lib/categorical.py}}, and preferentially imported in the script files (e.g. \colorbox{elg}{\texttt{scripts/violin.py}}).
 					\end{myblock}\vfill
@@ -226,7 +227,6 @@ pytex.add_dependencies(
 						\end{minipage}
 					\end{myblock}\vfill
 					\begin{myblock}{Manual Anchors}
-						\vspace{0.3em}
 						\py{pytex_fig(
 							'scripts/bsc_percentage.py', conf='poster/wide.conf', label='bsc_percentage',
 							caption='
@@ -234,19 +234,19 @@ pytex.add_dependencies(
 								Plot script from matplotlib exampes \cite{matplotlib}.
 								',
 							)}
-						\vspace{0.9em}
+						\vspace{0.5em}
 						The style application via hierarchical matplotlib configuration files (global, per-document, per-script --- in ascending order of priority) allows the selfsame script results to be adapted to individual document types.
 						Multiple views of the same data analysis summary (e.g. a plot) can thus rely on the same code, avoiding divergent editing.
 						Even sensitive plot elements, such as anchors, remain stable throughout various style applications, as exemplified here.
 					\end{myblock}\vfill
 					\begin{myblock}{References}
-                                                \vspace{-0.8em}
+                                                \vspace{-1em}
                                                 \begin{multicols}{2}
                                                         \scriptsize
-							\bibliographystyle{IEEEtran}
-                                                        \bibliography{./bib}
+                                                        \bibliographystyle{ieeetr}
+							\bibliography{./bib}
                                                 \end{multicols}
-                                                \vspace{-0.8em}
+                                                \vspace{-1em}
 					\end{myblock}\vfill
 		}\end{minipage}\end{beamercolorbox}
 	\end{column}
