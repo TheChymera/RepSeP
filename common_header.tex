@@ -7,11 +7,14 @@
 \usepackage{multicol}
 \usepackage{siunitx}
 \usepackage{subcaption}
+\usepackage[section]{placeins}
+\usepackage[british]{babel} % decent hyphenation, avoiding e.g. anal-ysis
 
-\sisetup{detect-all} % will use the current font for typesetting
+% detect-all will use the current font for typesetting
+\sisetup{per-mode=symbol, detect-all, range-units = single}
 \newcommand\SIci[5]{\SI{#1}{#2}, {#3}CI: \SIrange{#4}{#5}{#2}}
 
-\input{pythontex/functions.py}
+\input{/usr/share/repsep/functions.py}
 \begin{pythontexcustomcode}[begin]{py}
 pytex.add_dependencies(DOC_STYLE,
 	'lib/utils.py',
@@ -19,3 +22,10 @@ pytex.add_dependencies(DOC_STYLE,
 	'data/JogB.tsv'
 	)
 \end{pythontexcustomcode}
+
+% Single-session PythonTeX codeblocks
+\newcounter{pysessioncounter}
+\newcommand{\sessionpy}{%
+          \edef\sessionpysession{session\arabic{pysessioncounter}}%
+            \stepcounter{pysessioncounter}%
+              \expandafter\py\expandafter[\sessionpysession]}
