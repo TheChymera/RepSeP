@@ -1,36 +1,23 @@
-\documentclass[xcolor=table]{beamer}
+\documentclass[xcolor=table,english]{beamer}
 \usepackage[orientation=portrait,size=a0]{beamerposter}
 \mode<presentation>{\usetheme{ZH}}
-\usepackage{cleveref}
 \usepackage[utf8]{inputenc}
-\usepackage{multicol}
-\usepackage{makecell}
-\usepackage{subcaption}
-% \usepackage[german, english]{babel} % required for rendering German special characters
-\usepackage{siunitx} %pretty measurement unit rendering
-\usepackage[autoprint=false, gobble=auto, pyfuture=all]{pythontex} % create figures on-line directly from python!
-\usepackage{hyperref} %enable hyperlink for urls
 \usepackage{ragged2e}
-\usepackage{graphviz}
 \usepackage{verbatimbox}
 \usepackage[font=small,justification=justified]{caption}
 
-% \sisetup{per=frac,fraction=sfrac}
-\sisetup{per-mode=symbol}
-
-\begin{pythontexcustomcode}[begin]{py}
-DOC_STYLE = 'poster/main.conf'
-pytex.add_dependencies(
-      DOC_STYLE,
-      'poster/wide.conf',
-      'poster/3dplot.conf',
-      'poster/1col.conf',
-      )
-\end{pythontexcustomcode}
 \input{common_header.tex}
+\begin{pythontexcustomcode}[begin]{py}
+DOC_STYLE="poster/main.conf"
+pytex.add_dependencies(
+	DOC_STYLE,
+	'poster/wide.conf',
+	'poster/3dplot.conf',
+	'poster/1col.conf',
+	)
+\end{pythontexcustomcode}
 
 \usepackage{array}
-\usepackage{booktabs}
 \usepackage{tabularx}
 \newcolumntype{Z}{>{\centering\arraybackslash}X} % centered tabularx columns
 

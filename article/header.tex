@@ -10,17 +10,12 @@
 		includehead,
 		includefoot,
 	}
-\usepackage[hidelinks]{hyperref}
 \usepackage{lastpage}
-\usepackage[iso]{isodate}
-\usepackage{subcaption}
-\usepackage{cleveref}
 \usepackage[font={small,sf},labelfont={bf}]{caption}
 \usepackage{nameref}
-\usepackage{sansmath}
 \usepackage{makecell}
 \usepackage[all]{nowidow}
-\usepackage[autoprint=false, gobble=auto, keeptemps=all, pyfuture=all]{pythontex} % create figures on-line directly from python!
+\usepackage[hidelinks]{hyperref}
 
 %VARIABLES
 %set up a more stable buffers (the normal ones gets blanked after the titlepage is invoked)
@@ -94,11 +89,6 @@
 \titleformat{\subsubsection}[hang]{\footnotesize\usefont{T1}{phv}{b}{n}\color{Black}}{}{0em}{#1}%
 \titlespacing{\subsubsection}{0em}{0.75em}{0em}
 
-% Additional Pythontex support
-\begin{pythontexcustomcode}[begin]{py}
-DOC_STYLE = 'article/main.conf'
-\end{pythontexcustomcode}
-\usepackage{pgf} %we need this backend
 
 % Grey definitiosn.
 \definecolor{dg}{gray}{0.25}

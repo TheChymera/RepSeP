@@ -1,8 +1,7 @@
-\documentclass[xcolor=table,aspectratio=169,dvipsnames]{beamer}
+\documentclass[xcolor=table,aspectratio=169,dvipsnames,english]{beamer}
 \usepackage{bm}
 \usepackage[utf8]{inputenc}
 \usepackage{color}
-\usepackage[autoprint=false, gobble=auto, keeptemps=all, pyfuture=all]{pythontex} % create figures on-line directly from python!
 
 \setbeamersize{text margin left=0.8em,text margin right=0.8em}
 \setbeamertemplate{bibliography item}{\insertbiblabel}
@@ -31,10 +30,3 @@
 \setbeamertemplate{caption}{\centering\insertcaption\par}
 \setbeamertemplate{navigation symbols}{}
 
-% Additional Pythontex
-\begin{pythontexcustomcode}[begin]{py}
-DOC_STYLE = 'slides/main.conf'
-pytex.add_dependencies(DOC_STYLE,
-	'slides/1col.conf',
-	)
-\end{pythontexcustomcode}
