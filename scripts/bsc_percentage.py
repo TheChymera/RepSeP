@@ -86,7 +86,7 @@ for column in majors:
 
     # Again, make sure that all labels are large enough to be easily read
     # by the viewer.
-    ax.text(2011.5, y_pos, column, fontsize=14, color=line.get_color())
+    ax.text(2011.5, y_pos, column, color=line.get_color())
 
 # Make the title big enough so it spans the entire plot, but don't make it
 # so big that it requires two lines to show.
