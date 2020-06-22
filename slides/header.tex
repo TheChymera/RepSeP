@@ -3,6 +3,18 @@
 \usepackage[utf8]{inputenc}
 \usepackage{color}
 
+\input{common_header.tex}
+
+% Article-specific configuration
+\begin{pythontexcustomcode}[begin]{py}
+DOC_STYLE="slides/main.conf"
+pytex.add_dependencies(
+	DOC_STYLE,
+	'slides/1col.conf',
+	)
+\end{pythontexcustomcode}
+
+% Custom beamer styling and colors
 \setbeamersize{text margin left=0.8em,text margin right=0.8em}
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 
@@ -29,4 +41,3 @@
 \setbeamercolor{title}{fg=mg}
 \setbeamertemplate{caption}{\centering\insertcaption\par}
 \setbeamertemplate{navigation symbols}{}
-

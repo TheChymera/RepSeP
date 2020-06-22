@@ -17,6 +17,14 @@
 \usepackage[all]{nowidow}
 \usepackage[hidelinks]{hyperref}
 
+\input{common_header.tex}
+
+% Article-specific configuration
+\begin{pythontexcustomcode}[begin]{py}
+DOC_STYLE="article/main.conf"
+pytex.add_dependencies(DOC_STYLE)
+\end{pythontexcustomcode}
+
 %VARIABLES
 %set up a more stable buffers (the normal ones gets blanked after the titlepage is invoked)
 \makeatletter

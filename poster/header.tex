@@ -1,0 +1,22 @@
+\documentclass[xcolor=table,english]{beamer}
+\usepackage[orientation=portrait,size=a0]{beamerposter}
+\mode<presentation>{\usetheme{ZH}}
+\usepackage[utf8]{inputenc}
+\usepackage{ragged2e}
+\usepackage{verbatimbox}
+\usepackage[font=small,justification=justified]{caption}
+\usepackage{array}
+\usepackage{tabularx}
+
+\input{common_header.tex}
+\begin{pythontexcustomcode}[begin]{py}
+DOC_STYLE="poster/main.conf"
+pytex.add_dependencies(
+	DOC_STYLE,
+	'poster/wide.conf',
+	'poster/3dplot.conf',
+	'poster/1col.conf',
+	)
+\end{pythontexcustomcode}
+
+\newcolumntype{Z}{>{\centering\arraybackslash}X} % centered tabularx columns
