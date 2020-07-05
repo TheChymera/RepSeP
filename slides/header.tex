@@ -38,3 +38,26 @@ pytex.add_dependencies(
 \setbeamercolor{title}{fg=mg}
 \setbeamertemplate{caption}{\centering\insertcaption\par}
 \setbeamertemplate{navigation symbols}{}
+
+% Navigation symbols are too far down by default
+% To further adjust edit the pt numbers before and after `\insertnavigation`
+\makeatletter
+\defbeamertemplate*{headline}{my miniframes theme}
+{%
+        \begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+        \end{beamercolorbox}
+        \begin{beamercolorbox}{section in head/foot}
+                \vskip1pt\insertnavigation{\paperwidth}\vskip3pt
+        \end{beamercolorbox}%
+        \ifbeamer@theme@subsection%
+                \begin{beamercolorbox}[colsep=1.5pt]{middle separation line head}
+                \end{beamercolorbox}
+                \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+                        leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+                        \usebeamerfont{subsection in head/foot}\insertsubsectionhead
+                \end{beamercolorbox}%
+        \fi%
+        \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+        \end{beamercolorbox}
+}
+\makeatother
