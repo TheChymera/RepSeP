@@ -35,3 +35,6 @@ pytex.add_dependencies(
 % SIunitx customizations detect-all will use the current font for typesetting
 \sisetup{per-mode=symbol, detect-all, range-units = single}
 \newcommand\SIci[5]{\SI{#1}{#2}, {#3}CI: \SIrange{#4}{#5}{#2}}
+
+% Fix for matplotlib PGF wonkiness which isn't interpreted correctly by pdflatex
+\DeclareUnicodeCharacter{2212}{-}
