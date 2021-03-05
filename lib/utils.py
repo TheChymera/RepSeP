@@ -92,3 +92,40 @@ def inline_anova(anova,
 		if pythontex_safe:
 			inline = inline.replace("\\","\\\\")
 	return inline
+
+def bold_max_row_value(df, df_tex: str):
+    """
+    Wraps the maximum value for each row with \textbf{} in a df.to_latex() string.
+
+    Parameters
+    ----------
+    df :  pandas.DataFrame
+            Pandas DataFrame object containing at least one column with numerical values.
+
+    df_tex: string
+                The output of df.to_latex(). The values if this string will be changed such that the maximum values of
+                each row will be bold in the resulting pdf.
+    >>> import pandas as pd
+    >>> df = pd.DataFrame({'col1': [1, 2, 20], 'col2': [3, 4, 8],'col3': [5, 6, 5]})
+    >>> print(bold_max_value(df, df.to_latex()), end="")
+    \\begin{tabular}{lrrr}
+    \\toprule
+    {} &  col1 &  col2 &  col3 \\\\
+    \\midrule
+    0 &     1 &     3 &     \\textbf{5} \\\\
+    1 &     2 &     4 &     \\textbf{6} \\\\
+    2 &    \\textbf{20} &     8 &     5 \\\\
+    \\bottomrule
+    \\end{tabular}
+    """
+    header = df_tex.find(r'\midrule') + len('\midrule\n')
+    tail = df_tex.find('\n\\bottomrule')
+    body = df_tex[header:tail].split('\n')
+    for row_idx, (row_max, tex_row) in enumerate(zip(df.max(numeric_only=True, axis=1).values.tolist(), body)):
+        body[row_idx] = tex_row.replace(str(row_max), r'\textbf{' + str(row_max) + r'}')
+
+    return df_tex[:header] + '\n'.join(body) + df_tex[tail:]
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
