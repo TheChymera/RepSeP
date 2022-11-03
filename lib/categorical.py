@@ -11,13 +11,12 @@ import matplotlib.pyplot as plt
 import warnings
 from distutils.version import LooseVersion
 
-from seaborn._core import variable_type, infer_orient, categorical_order
+from seaborn._oldcore import variable_type, infer_orient, categorical_order
 from seaborn import utils
 from seaborn.utils import remove_na
 from seaborn.algorithms import bootstrap
 from seaborn.palettes import color_palette, husl_palette, light_palette, dark_palette
 from seaborn.axisgrid import FacetGrid, _facet_docs
-from seaborn._decorators import _deprecate_positional_args
 
 
 __all__ = [
@@ -2235,7 +2234,6 @@ _categorical_docs = dict(
 _categorical_docs.update(_facet_docs)
 
 
-@_deprecate_positional_args
 def boxplot(
     *,
     x=None, y=None,
@@ -2392,7 +2390,6 @@ boxplot.__doc__ = dedent("""\
     """).format(**_categorical_docs)
 
 
-@_deprecate_positional_args
 def violinplot(
     *,
     x=None, y=None,
@@ -2632,7 +2629,6 @@ violinplot.__doc__ = dedent("""\
     """).format(**_categorical_docs)
 
 
-@_deprecate_positional_args
 def boxenplot(
     *,
     x=None, y=None,
@@ -2801,7 +2797,6 @@ boxenplot.__doc__ = dedent("""\
     """).format(**_categorical_docs)
 
 
-@_deprecate_positional_args
 def stripplot(
     *,
     x=None, y=None,
@@ -2998,7 +2993,6 @@ stripplot.__doc__ = dedent("""\
     """).format(**_categorical_docs)
 
 
-@_deprecate_positional_args
 def swarmplot(
     *,
     x=None, y=None,
@@ -3179,7 +3173,6 @@ swarmplot.__doc__ = dedent("""\
     """).format(**_categorical_docs)
 
 
-@_deprecate_positional_args
 def barplot(
     *,
     x=None, y=None,
@@ -3372,7 +3365,6 @@ barplot.__doc__ = dedent("""\
     """).format(**_categorical_docs)
 
 
-@_deprecate_positional_args
 def pointplot(
     *,
     x=None, y=None,
@@ -3580,7 +3572,6 @@ pointplot.__doc__ = dedent("""\
     """).format(**_categorical_docs)
 
 
-@_deprecate_positional_args
 def countplot(
     *,
     x=None, y=None,
@@ -3740,7 +3731,6 @@ def factorplot(*args, **kwargs):
     return catplot(*args, **kwargs)
 
 
-@_deprecate_positional_args
 def catplot(
     *,
     x=None, y=None,
