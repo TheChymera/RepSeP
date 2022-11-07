@@ -1,9 +1,10 @@
-# Copyright 1999-2019 Gentoo Foundation
+# Copyright 1999-2022 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
+PYTHON_COMPAT=( python3_{7..11} )
+inherit distutils-r1
 
 DESCRIPTION="The Reproducible Self Publishing Reference Implementation"
 HOMEPAGE="https://github.com/TheChymera/RepSeP"
@@ -15,14 +16,16 @@ KEYWORDS=""
 
 DEPEND=""
 RDEPEND="
-	dev-python/matplotlib
-	dev-python/numpy
-	dev-python/pandas
-	dev-python/seaborn
-	dev-python/pygments
-	>=dev-python/statsmodels-0.9.0
+	dev-python/matplotlib[${PYTHON_USEDEP}]
+	dev-python/numpy[${PYTHON_USEDEP}]
+	dev-python/pandas[${PYTHON_USEDEP}]
+	dev-python/pygments[${PYTHON_USEDEP}]
+	dev-python/seaborn[${PYTHON_USEDEP}]
+	dev-python/statsmodels[${PYTHON_USEDEP}]
 	>=dev-tex/latex-beamer-3.41
 	>=dev-tex/pythontex-0.16
+	dev-tex/rubber[${PYTHON_USEDEP}]
 	app-text/texlive
 	media-gfx/graphviz
+	sys-devel/make
 	"
