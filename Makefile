@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+# Publishing variables
+SERVER=dreamarticles
+WEBSITE=articles.chymera.eu
+NAME=$(shell basename $(shell pwd))
+
+
+# Set NOCLIENT variable to not prepend hostname to published filename:
+# e.g. `NOCLIENT=1 make upload-article`
+CLIENT := $(if $(NOCLIENT),$(shell cat /dev/null),$(shell hostname)_)
+
 COMMON := bib.bib common_header.tex
 PYTHONTEX_ALL := $(wildcard lib/* pythontex/* scripts/*)
 STATIC_ALL := $(wildcard img/* *.sty)
@@ -15,19 +25,21 @@ poster.pdf:	$(wildcard poster/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL)
 slides.pdf:		$(wildcard slides/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL)
 	rubber --pdf --unsafe slides.tex
 
-cleanarticle:
+
+# Cleanscripts
+clean-article:
 	rubber --clean article.tex
 	rm _minted-article -rf
-cleanpitch:
+clean-pitch:
 	rubber --clean pitch.tex
 	rm _minted-pitch -rf
-cleanposter:
+clean-poster:
 	rubber --clean poster.tex
 	rm _minted-poster -rf
-cleanslides:
+clean-slides:
 	rubber --clean slides.tex
 	rm _minted-slides -rf
-cleantraces:
+clean-traces:
 	rm -rf\
 		auto_fig_py_*\
 		*.aux\
@@ -44,4 +56,15 @@ cleantraces:
 		*.vrb\
 		*.rubbercache
 clean: cleanarticle cleanpitch cleanposter cleanslides
-cleanfull: cleanarticle cleanpitch cleanposter cleanslides cleantraces
+clean-full: cleanarticle cleanpitch cleanposter cleanslides cleantraces
+
+# Upload scripts
+upload: upload-article
+upload-article: article.pdf
+	rsync -avP article.pdf ${SERVER}:${WEBSITE}/${CLIENT}${NAME}_article.pdf
+upload-pitch: pitch.pdf
+	rsync -avP pitch.pdf ${SERVER}:${WEBSITE}/${CLIENT}${NAME}_pitch.pdf
+upload-poster: poster.pdf
+	rsync -avP poster.pdf ${SERVER}:${WEBSITE}/${CLIENT}${NAME}_poster.pdf
+upload-slides: slides.pdf
+	rsync -avP slides.pdf ${SERVER}:${WEBSITE}/${CLIENT}${NAME}_slides.pdf
