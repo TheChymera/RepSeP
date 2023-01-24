@@ -2146,7 +2146,7 @@ _categorical_docs = dict(
     orient : "v" | "h", optional
         Orientation of the plot (vertical or horizontal). This is usually
         inferred based on the type of the input variables, but it can be used
-        to resolve ambiguitiy when both `x` and `y` are numeric or when
+        to resolve ambiguity when both `x` and `y` are numeric or when
         plotting wide-form data.\
     """),
     color=dedent("""\
@@ -2474,7 +2474,7 @@ violinplot.__doc__ = dedent("""\
     {orient}
     {linewidth}
     inner_linewidth : float, optional
-        Width of the lines used do draw inner featues inside the violins.
+        Width of the lines used do draw inner features inside the violins.
     {color}
     linecolor : matplotlib color, "gray" is special-cased, optional
         Color of the lines around each point. If you pass ``"gray"``, the
