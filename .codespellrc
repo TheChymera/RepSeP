@@ -1,0 +1,5 @@
+[codespell]
+# obvious hits + Lorem ipsum fillin
+skip = .git,.venv,*.pdf,introduction.tex,filler_sections.tex,background.tex
+# whis - for whisker in code
+ignore-words-list = whis
