@@ -17,6 +17,8 @@
 % PythonTeX
 \usepackage[autoprint=false, gobble=auto, keeptemps=all, pyfuture=all]{pythontex} % create figures on-line directly from python!
 \usepackage{pgf}
+% The import package is needed for relative figure referencing in PGFs stored under the pythontex job directory
+\usepackage{import}
 \begin{pythontexcustomcode}[begin]{py}
 pytex.add_dependencies(
 	'lib/utils.py',
