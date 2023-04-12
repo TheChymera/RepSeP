@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Publishing variables
+# Ideally these should be environment variables and we should check here whether they're defined and explain upload requires them if they're not.
 SERVER=dreamarticles
 WEBSITE=articles.chymera.eu
 NAME=$(shell basename $(shell pwd))
