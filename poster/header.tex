@@ -11,6 +11,7 @@
 \input{common_header.tex}
 \begin{pythontexcustomcode}[begin]{py}
 DOC_STYLE="poster/main.conf"
+JOBNAME="poster"
 pytex.add_dependencies(
 	DOC_STYLE,
 	'poster/wide.conf',
@@ -18,5 +19,8 @@ pytex.add_dependencies(
 	'poster/1col.conf',
 	)
 \end{pythontexcustomcode}
+
+% This does not go into the common header as it needs to be imputed after the document-specific variables are defined.
+\input{/usr/share/repsep/functions.py}
 
 \newcolumntype{Z}{>{\centering\arraybackslash}X} % centered tabularx columns

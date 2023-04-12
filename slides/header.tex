@@ -8,11 +8,15 @@
 % Article-specific configuration
 \begin{pythontexcustomcode}[begin]{py}
 DOC_STYLE="slides/main.conf"
+JOBNAME="slides"
 pytex.add_dependencies(
 	DOC_STYLE,
 	'slides/1col.conf',
 	)
 \end{pythontexcustomcode}
+
+% This does not go into the common header as it needs to be imputed after the document-specific variables are defined.
+\input{/usr/share/repsep/functions.py}
 
 % Custom beamer styling and colors
 \setbeamersize{text margin left=0.8em,text margin right=0.8em}

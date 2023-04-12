@@ -22,8 +22,12 @@
 % Article-specific configuration
 \begin{pythontexcustomcode}[begin]{py}
 DOC_STYLE="article/main.conf"
+JOBNAME="article"
 pytex.add_dependencies(DOC_STYLE)
 \end{pythontexcustomcode}
+
+% This does not go into the common header as it needs to be imputed after the document-specific variables are defined.
+\input{/usr/share/repsep/functions.py}
 
 %VARIABLES
 %set up a more stable buffers (the normal ones gets blanked after the titlepage is invoked)
