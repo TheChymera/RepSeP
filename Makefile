@@ -17,7 +17,7 @@ STATIC_ALL := $(wildcard img/* *.sty)
 all: article.pdf poster.pdf pitch.pdf slides.pdf
 
 article.pdf:	$(wildcard article/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) article.tex
-	rubber -pdf --unsafe article.tex
+	rubber --pdf --unsafe article.tex
 pitch.pdf:		$(wildcard pitch/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) pitch.tex
 	rubber --pdf --unsafe pitch.tex
 poster.pdf:	$(wildcard poster/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) poster.tex
