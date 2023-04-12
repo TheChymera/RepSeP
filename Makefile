@@ -11,7 +11,7 @@ NAME=$(shell basename $(shell pwd))
 # e.g. `NOCLIENT=1 make upload-article`
 CLIENT := $(if $(NOCLIENT),$(shell cat /dev/null),$(shell hostname)_)
 
-COMMON := bib.bib common_header.tex
+COMMON := $(wildcard common/*)
 PYTHONTEX_ALL := $(wildcard lib/* pythontex/* scripts/*)
 STATIC_ALL := $(wildcard img/* *.sty)
 
@@ -40,7 +40,9 @@ clean-poster:
 clean-slides:
 	rubber --clean slides.tex
 	rm _minted-slides -rf
-clean: clean-article clean-pitch clean-poster clean-slides
+clean-traces:
+	rm *.vrb
+clean: clean-article clean-pitch clean-poster clean-slides clean-traces
 
 # Upload scripts
 upload: upload-article
