@@ -39,24 +39,7 @@ clean-poster:
 clean-slides:
 	rubber --clean slides.tex
 	rm _minted-slides -rf
-clean-traces:
-	rm -rf\
-		auto_fig_py_*\
-		*.aux\
-		*.bbl\
-		*.blg\
-		*.log\
-		*.nav\
-		*.out\
-		*.pgf\
-		pythontex-files-*\
-		*.pytxcode\
-		*.snm\
-		*.toc\
-		*.vrb\
-		*.rubbercache
 clean: clean-article clean-pitch clean-poster clean-slides
-clean-full: clean-article clean-pitch clean-poster clean-slides clean-traces
 
 # Upload scripts
 upload: upload-article
