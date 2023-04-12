@@ -55,8 +55,8 @@ clean-traces:
 		*.toc\
 		*.vrb\
 		*.rubbercache
-clean: cleanarticle cleanpitch cleanposter cleanslides
-clean-full: cleanarticle cleanpitch cleanposter cleanslides cleantraces
+clean: clean-article clean-pitch clean-poster clean-slides
+clean-full: clean-article clean-pitch clean-poster clean-slides clean-traces
 
 # Upload scripts
 upload: upload-article
