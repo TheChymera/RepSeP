@@ -1,0 +1,67 @@
+\documentclass[xcolor=table,aspectratio=169,dvipsnames,english]{beamer}
+\usepackage{bm}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+
+\input{common_header.tex}
+
+% Article-specific configuration
+\begin{pythontexcustomcode}[begin]{py}
+DOC_STYLE="slides/main.conf"
+JOBNAME="pitch"
+pytex.add_dependencies(
+	DOC_STYLE,
+	'slides/1col.conf',
+	)
+\end{pythontexcustomcode}
+
+% This does not go into the common header as it needs to be imputed after the document-specific variables are defined.
+\input{/usr/share/repsep/functions.py}
+
+% Custom beamer styling and colors
+\setbeamersize{text margin left=0.8em,text margin right=0.8em}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+\usecolortheme[RGB={199,199,199}]{structure}
+\usetheme{Dresden}
+
+\captionsetup[figure]{labelformat=empty}
+
+\definecolor{dy}{RGB}{202,202,0}
+\definecolor{rsblue}{HTML}{00a3cc}
+\definecolor{mg}{gray}{0.30}
+\definecolor{lg}{gray}{0.60}
+\definecolor{vlg}{gray}{0.78}
+\definecolor{tlg}{gray}{0.88}
+
+\setbeamercolor{caption name}{fg=lg}
+\setbeamercolor{caption}{fg=lg}
+\setbeamercolor{author}{fg=lg}
+\setbeamercolor{institute}{fg=lg}
+\setbeamercolor{date}{fg=lg}
+\setbeamercolor{title}{fg=mg}
+\setbeamertemplate{caption}{\centering\insertcaption\par}
+\setbeamertemplate{navigation symbols}{}
+
+% Navigation symbols are too far down by default
+% To further adjust edit the pt numbers before and after `\insertnavigation`
+\makeatletter
+\defbeamertemplate*{headline}{my miniframes theme}
+{%
+        \begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+        \end{beamercolorbox}
+        \begin{beamercolorbox}{section in head/foot}
+                \vskip1pt\insertnavigation{\paperwidth}\vskip3pt
+        \end{beamercolorbox}%
+        \ifbeamer@theme@subsection%
+                \begin{beamercolorbox}[colsep=1.5pt]{middle separation line head}
+                \end{beamercolorbox}
+                \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+                        leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+                        \usebeamerfont{subsection in head/foot}\insertsubsectionhead
+                \end{beamercolorbox}%
+        \fi%
+        \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+        \end{beamercolorbox}
+}
+\makeatother
