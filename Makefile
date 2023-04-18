@@ -15,7 +15,7 @@ COMMON := $(wildcard common/*)
 PYTHONTEX_ALL := $(wildcard lib/* pythontex/* scripts/*)
 STATIC_ALL := $(wildcard img/* *.sty)
 
-all: article.pdf poster.pdf pitch.pdf slides.pdf
+all: article.pdf poster.pdf pitch.pdf review.pdf slides.pdf
 
 article.pdf:	$(wildcard article/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) article.tex
 	rubber --pdf --unsafe article.tex
@@ -23,8 +23,10 @@ pitch.pdf:		$(wildcard pitch/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) pitch.t
 	rubber --pdf --unsafe pitch.tex
 poster.pdf:	$(wildcard poster/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) poster.tex
 	rubber --pdf --unsafe poster.tex
+review.pdf:		$(wildcard review/*) $(COMMON) slides.tex
+	rubber --pdf --unsafe review.tex
 slides.pdf:		$(wildcard slides/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) slides.tex
-	rubber --pdf --unsafe slides.tex
+	rubber --pdf slides.tex
 
 
 # Cleanscripts
@@ -37,12 +39,15 @@ clean-pitch:
 clean-poster:
 	rubber --clean poster.tex
 	rm _minted-poster -rf
+clean-review:
+	rubber --clean review.tex
+	rm _minted-review -rf
 clean-slides:
 	rubber --clean slides.tex
 	rm _minted-slides -rf
 clean-traces:
 	rm *.vrb
-clean: clean-article clean-pitch clean-poster clean-slides clean-traces
+clean: clean-article clean-pitch clean-poster clean-review clean-slides clean-traces
 
 # Upload scripts
 upload: upload-article
