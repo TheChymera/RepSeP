@@ -17,36 +17,46 @@ STATIC_ALL := $(wildcard img/* *.sty)
 
 all: article.pdf poster.pdf pitch.pdf review.pdf slides.pdf
 
-article.pdf:	$(wildcard article/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) article.tex
+.PHONY: article
+article:	$(wildcard article/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) article.tex
 	rubber --pdf --unsafe article.tex
-pitch.pdf:		$(wildcard pitch/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) pitch.tex
+
+.PHONY: pitch
+pitch:		$(wildcard pitch/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) pitch.tex
 	rubber --pdf --unsafe pitch.tex
-poster.pdf:	$(wildcard poster/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) poster.tex
+
+.PHONY: poster
+poster:	$(wildcard poster/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) poster.tex
 	rubber --pdf --unsafe poster.tex
-review.pdf:		$(wildcard review/*) $(COMMON) slides.tex
+
+.PHONY: review
+review:		$(wildcard review/*) $(COMMON) review.tex
 	rubber --pdf --unsafe review.tex
-slides.pdf:		$(wildcard slides/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) slides.tex
+
+.PHONY: slides
+slides:		$(wildcard slides/*) $(COMMON) $(PYTHONTEX_ALL) $(STATIC_ALL) slides.tex
 	rubber --pdf slides.tex
 
 
 # Cleanscripts
 clean-article:
 	rubber --clean article.tex
-	rm _minted-article -rf
+	@rm -f _minted-article -rf
 clean-pitch:
 	rubber --clean pitch.tex
-	rm _minted-pitch -rf
+	@rm -f _minted-pitch -rf
 clean-poster:
 	rubber --clean poster.tex
-	rm _minted-poster -rf
+	@rm -f _minted-poster -rf
 clean-review:
 	rubber --clean review.tex
-	rm _minted-review -rf
+	@rm -f _minted-review -rf
 clean-slides:
 	rubber --clean slides.tex
-	rm _minted-slides -rf
+	@rm -f _minted-slides -rf
 clean-traces:
-	rm *.vrb
+	@rm -f *.vrb
+	@rm -rf .tex_traces
 clean: clean-article clean-pitch clean-poster clean-review clean-slides clean-traces
 
 # Upload scripts
