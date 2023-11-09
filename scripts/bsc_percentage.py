@@ -3,9 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.cbook import get_sample_data
 
 
-fname = get_sample_data('percent_bachelors_degrees_women_usa.csv',
-                        asfileobj=False)
-gender_degree_data = np.genfromtxt(fname, delimiter=',', names=True)
+gender_degree_data = np.genfromtxt('data/percent-bachelors-degrees-women-usa.csv', delimiter=',', names=True)
 
 # You typically want your plot to be ~1.33x wider than tall. This plot
 # is a rare exception because of the number of lines being plotted on it.
