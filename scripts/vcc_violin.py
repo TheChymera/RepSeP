@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import matplotlib as mpl
-from lib.categorical import violinplot
+#from lib.categorical import violinplot
+from seaborn import violinplot
 from os import path
 
 # Style
@@ -24,8 +25,7 @@ ax = violinplot(
 	split=True,
 	inner='quartile',
 	palette=palette,
-	scale='area',
-	dodge=False,
+	density_norm='area',
 	#inner_linewidth=1.0,
 	linewidth=mpl.rcParams['grid.linewidth'],
 	linecolor='w',
