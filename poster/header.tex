@@ -1,6 +1,5 @@
 \documentclass[xcolor=table,english]{beamer}
 \usepackage[orientation=portrait,size=a0]{sty/beamerposter}
-%\mode<presentation>{\usetheme{sty/beamerthemeZH}}
 \mode<presentation>{
 	\usepackage{sty/beamerthemeZH}
 }
@@ -27,3 +26,6 @@ pytex.add_dependencies(
 \input{/usr/share/repsep/functions.py}
 
 \newcolumntype{Z}{>{\centering\arraybackslash}X} % centered tabularx columns
+
+\newlength{\columnheight}
+\setlength{\columnheight}{0.881\textheight}

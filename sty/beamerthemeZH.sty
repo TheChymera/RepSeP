@@ -67,7 +67,7 @@
 	\vskip2ex
 	\begin{beamercolorbox}[ht=2.8ex,dp=2ex, wd=\mylength, center,rounded=false,shadow=false,leftskip=1cm,colsep*=0ex]{block title}%
 		\usebeamerfont*{block title}\centering \insertblocktitle
-	\end{beamercolorbox}\vskip-9pt%
+	\end{beamercolorbox}\vskip-3pt%
 	{\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5ex}}%
 	\usebeamerfont{block body}%
 	\begin{beamercolorbox}[rounded=false,shadow=false,center,wd=\textwidth,]{block body}%
@@ -120,11 +120,11 @@
 	\end{beamercolorbox}
 	\leavevmode%
 	\begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{author in head/foot}%
-		\href{http://doi.org/10.5281/zenodo.3477675}{DOI: 10.5281/zenodo.3477675}
+		\href{http://doi.org/\myDOI}{DOI: \myDOI}
 		\hfill
-		Open Innovation in Life Sciences --- 2019-10-10
+		Open Innovation in Life Sciences --- \insertdate
 		\hfill
-		\href{mailto:my_address@wikibooks.org}{ioanas@biomed.ee.ethz.ch}
+		\href{mailto:\myemail}{\myemail}
 		\vskip1ex
 	\end{beamercolorbox}
 	\vskip0pt%

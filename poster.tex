@@ -1,14 +1,28 @@
 \input{poster/header.tex}
 
-\title{\href{https://github.com/TheChymera/RepSeP}{\Large github.com/TheChymera/RepSeP}\\\vspace{.15em}Reproducible Publishing --- Reference Poster Implementation}
-% \title{Longitudinal opto-pharmaco-fMRI of Selective\\ Serotonin Reuptake Inhibition}
-\author{Horea-Ioan Ioanas$^{1}$, Markus Rudin$^{1}$}
-\institute[ETH]{$^{1}$Institute for Biomedical Engineering, ETH and University of Zurich}
-\date{\today}
+% Set these inputs:
+\date{2019-10-10}
+\title{
+      \href{https://github.com/TheChymera/RepSeP}{\Large
+	    github.com/TheChymera/RepSeP
+	    }\\\vspace{.15em}
+      Reproducible Publishing --- Reference Poster Implementation
+}
+\author{
+      Horea-Ioan Ioanas$^{1}$,
+      Markus Rudin$^{1}$,
+}
+\institute[ETH]{
+      $^{1}$Institute for Biomedical Engineering, ETH and University of Zurich
+}
+% These need to be inline lest the URL is constructed with whitespace
+\newcommand{\myDOI}{10.5281/zenodo.3477675}
+\newcommand{\myemail}{ioanas@biomed.ee.ethz.ch}
 
-\newlength{\columnheight}
-\setlength{\columnheight}{0.881\textheight}
 
+
+%VARIABLES
+%set up a more stable buffers (the normal ones gets blanked after the titlepage is invoked)
 \begin{document}
 
 \begin{myverbbox}[\small]{\tabcode}
@@ -53,7 +67,6 @@
 							}
 							\vspace{1em}
 						\end{figure}
-
 						Explicit, unambiguous declaration (e.g. conforming to the Package Manager Specification \cite{pms}) of first-level dependencies is vital for software environment reproducibility.
 						Given such a specification, an effective package manager can automatically resolve all downstream steps (typically extending into the hundreds or thousands of packages) \cite{ng}.
 
